@@ -1,0 +1,68 @@
+body
+{
+    margin: 0;
+    padding: 0;
+
+}
+
+nav
+{
+    background-color: #541108;
+    margin: 0;
+    padding: 20px 0;
+    position: sticky;
+}
+
+ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li
+{
+    display: inline;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+a
+{
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+}
+
+a:hover
+{
+    color: #ff9900;
+}
+
+#searchbar-div
+{
+    float: right;
+    padding-right: 20px;
+}
+
+#Searchbar-input
+{
+    background-color: #1e2738;
+    color: #7a7777;
+    border-radius: 7px 0px 0px 7px;
+    height: 20px;
+    border: none;
+    margin-right: -2px;
+}
+
+#Searchbar-Button
+{
+    background-color: #1e2738;
+    color: #7a7777;
+    height: 22px;
+    border-radius: 0px 7px 7px 0px;
+    border: none;
+    margin-left: -2px;
+    border-left: #33333a solid 2px;
+}
+
