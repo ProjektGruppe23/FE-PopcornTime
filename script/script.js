@@ -46,25 +46,29 @@ function createSeats(rows, seatsPerRow) {
     }
 }
 
-// Define a function to fetch occupied seat IDs
-function fetchOccupiedSeatIds() {
-    fetch('/getOccupiedSeatsId')
+function fetchBookedSeats() {
+    fetch('http://localhost:8080/getBookedSeats') // Use the correct endpoint
         .then(response => response.json())
         .then(data => {
-            // `data` contains the ArrayList from the server
-            console.log(data); // Output: ["1", "388", "293"]
+            // data contains the list of booked seats from the server
+            console.log(data);
 
             // Now you can work with the data in JavaScript
-            data.forEach(seatId => {
-                console.log(`Hello, ${seatId}!`);
+            // For example, you can loop through the booked seats and mark them as booked
+            data.forEach(bookedSeat => {
+                const seatElement = document.getElementById(bookedSeat.id.toString());
+                if (seatElement) {
+                    seatElement.classList.add('booked');
+                    seatElement.removeEventListener('click', changeSeatStatusToSelected);
+                }
             });
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.log(error);
         });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     createSeats(25, 16);
-    fetchOccupiedSeatIds();
+    fetchBookedSeats();
 });
