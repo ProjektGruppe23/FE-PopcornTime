@@ -46,6 +46,25 @@ function createSeats(rows, seatsPerRow) {
     }
 }
 
-// Call the function to create 400 seats in 25 rows of 16 seats each
-document.addEventListener("DOMContentLoaded", ev => createSeats(25, 16));
+// Define a function to fetch occupied seat IDs
+function fetchOccupiedSeatIds() {
+    fetch('/getOccupiedSeatsId')
+        .then(response => response.json())
+        .then(data => {
+            // `data` contains the ArrayList from the server
+            console.log(data); // Output: ["1", "388", "293"]
 
+            // Now you can work with the data in JavaScript
+            data.forEach(seatId => {
+                console.log(`Hello, ${seatId}!`);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    createSeats(25, 16);
+    fetchOccupiedSeatIds();
+});
