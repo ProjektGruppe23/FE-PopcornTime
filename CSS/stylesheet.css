@@ -1,43 +1,77 @@
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+body {
+    background-color: #2B0302;
 }
 
+/* Use % for fluid container */
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 1.25rem; /* Use rem for padding */
+}
+
+/* Use % and fr for fluid grid layout */
 #movie-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr); /* fr is fluid by nature */
+    gap: 1rem; /* Use rem for gap */
 }
 
+/* Use rem for padding, and remove border */
 .movie-card {
-    border: 1px solid #ccc;
-    padding: 16px;
+    margin: 2%;
+    padding: 10%;
+    border-radius: 2rem;
+    background-color: #050204;
+    border: none;
     text-align: center;
 }
 
+/* Use % for fluid image size */
 .movie-card img {
+    border-radius: 2rem;
     max-width: 100%;
+    cursor: pointer;
     height: auto;
 }
 
-.movie-title {
-    margin-top: 12px;
-    font-size: 1.2em;
+.movie-card img:hover {
+    opacity: 50%;
 }
 
+/* Use rem for margin and em for fluid text size */
+.movie-title {
+    margin-top: 0.75rem;
+    font-size: 1.2em;
+    font-family: Bahnschrift, sans-serif;
+    color: #fff;
+    cursor: default;
+}
+
+.movie-period {
+    margin-top: 0.75rem;
+    font-size: 0.8em;
+    font-family: Bahnschrift, sans-serif;
+    color: lightgray;
+    cursor: default;
+}
+
+/* Use rem for text size, padding, and other dimensions */
 .button-style {
     display: block;
     text-align: center;
     text-decoration: none;
-    font-size: medium;
+    font-size: 1.2rem;
     font-family: Bahnschrift, sans-serif;
-    background-color: #007BFF;
+    background-color: #990601;
     color: #fff;
-    padding: 10px 20px;
+    padding: 0.5rem;
     border: none;
-    margin-top: 15px;
-    border-radius: 5px;
+    margin: 5% auto 0 auto;
+    border-radius: 2rem;
     cursor: pointer;
-    width: 100%;
+    width: 80%; /* Use % for fluid width */
+}
+
+.button-style:hover {
+    opacity: 50%;
 }
