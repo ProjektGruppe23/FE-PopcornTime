@@ -62,16 +62,23 @@ function fetchBookedSeats() {
         });
 }
 
+
 function fetchMovieDetails() {
     fetch('http://localhost:8080/getMovieDetails')
         .then(response => response.json())
         .then(data => {
+            const moviePicture = document.getElementById('picture');
+            moviePicture.setAttribute("src", data.picture)
+            moviePicture.setAttribute("alt", "hej")
+            moviePicture.setAttribute("width", 150)
+            moviePicture.setAttribute("height", 150)
             const movieTitle = document.getElementById('title');
             const movieLength = document.getElementById('length');
             const movieDate = document.getElementById('date');
             const movieTime = document.getElementById('time');
             const movieGenre = document.getElementById('genre');
             const movieAge = document.getElementById('age');
+            moviePicture.src = data.picture;
             movieTitle.innerText = data.title;
             movieDate.innerText = data.date;
             movieTime.innerText = data.time;

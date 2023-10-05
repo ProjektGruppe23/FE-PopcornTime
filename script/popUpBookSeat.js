@@ -1,24 +1,18 @@
-const openModalButtons = document.querySelectorAll('[data-modal-target]')
-const closeModalButtons = document.querySelectorAll('[data-close-button]')
-const overlay = document.getElementById('overlay')
+// Get the button and popup elements
+const popupButton = document.getElementById("popup-button");
+const popup = document.getElementById("popup");
+const closeButton = document.getElementById("close-button");
 
-openModalButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const modal = document.querySelector(button.dataset.modalTarget)
-        openModal(modal)
-    })
-})
+// Function to show the popup
+function showPopup() {
+    popup.style.display = "block";
+}
 
-overlay.addEventListener('click', () => {
-    const modals = document.querySelectorAll('.modal.active')
-    modals.forEach(modal => {
-        closeModal(modal)
-    })
-})
+// Function to close the popup
+function closePopup() {
+    popup.style.display = "none";
+}
 
-closeModalButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const modal = button.closest('.modal')
-        closeModal(modal)
-    })
-})
+// Add click event listeners to the button and close button
+popupButton.addEventListener("click", showPopup);
+closeButton.addEventListener("click", closePopup);
