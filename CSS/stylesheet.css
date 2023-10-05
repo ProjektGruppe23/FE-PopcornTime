@@ -75,3 +75,28 @@ body {
 .button-style:hover {
     opacity: 50%;
 }
+ #movieFilter
+ {
+     display: block;
+     text-align: left;
+     text-decoration: none;
+     font-size: 0.8rem;
+     font-family: Bahnschrift, sans-serif;
+     background-color: #990601;
+     color: #fff;
+     padding: 0.5rem 0.5rem 0.5rem 0.2rem;
+     border: none;
+     margin: 10% 1% 5% auto;
+     border-radius: 2rem;
+     cursor: pointer;
+     width: 10%; /* Use % for fluid width */
+ }
+ .selectedFilter
+ {
+     margin: 2%;
+     padding: 10%;
+     border-radius: 2rem;
+     background-color: #050204;
+     border: none;
+     text-align: left;
+ }

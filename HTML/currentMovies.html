@@ -5,8 +5,17 @@
     <title>Movie List</title>
     <link rel="stylesheet" href="../CSS/stylesheet.css">
 </head>
-<body   >
+<body>
 <div class="container">
+    <div class="dropdown-container">
+        <select id="movieFilter">
+            <option value="" class="selectedFilter">Filter</option>
+            <option value="Action" class="selectedFilter">Action</option>
+            <option value="Comedy" class="selectedFilter">Comedy</option>
+            <option value="Agelimit: 18" class="selectedFilter">Agelimit: 18</option>
+            <option value="Agelimit: 13" class="selectedFilter">Agelimit: 13</option>
+        </select>
+    </div>
     <div id="movie-container">
         <!-- Movies will be inserted here -->
     </div>
