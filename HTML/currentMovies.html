@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie List</title>
-    <link rel="stylesheet" href="../CSS/stylesheet.css">
+    <link href="../CSS/stylesheet.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <div class="dropdown-container">
+        <!-- Removed hardcoded options; they'll be populated from the backend -->
         <select id="movieFilter">
-            <option value="" class="selectedFilter">Filter</option>
-            <option value="Action" class="selectedFilter">Action</option>
-            <option value="Comedy" class="selectedFilter">Comedy</option>
-            <option value="Agelimit: 18" class="selectedFilter">Agelimit: 18</option>
-            <option value="Agelimit: 13" class="selectedFilter">Agelimit: 13</option>
+            <option class="selectedFilter" value="">Filter</option>
         </select>
     </div>
     <div id="movie-container">
@@ -21,6 +18,6 @@
     </div>
 </div>
 
-<script type="module" src="../JS/currentMovies.js"></script>
+<script src="../JS/currentMovies.js" type="module"></script>
 </body>
 </html>
