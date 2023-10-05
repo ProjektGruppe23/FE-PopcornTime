@@ -1,23 +1,21 @@
-// movieFilter.js
-export function filterMovies(genre, apiUrl, movieContainer)
+import { fetchAndPopulateGenres } from './modules/populateGenres.js';
+import { fetchAndDisplayMoviesByGenre } from './modules/fetchAndDisplayMoviesByGenre.js';
+
+document.addEventListener("DOMContentLoaded", function ()
 {
-    let filterUrl;
+    // Replace this URL with your backend API URL
+    const apiUrl = "http://localhost:8080/movies/upcoming";
+    const movieContainer = document.getElementById('movie-container');
 
-    if (genre)
-    {
-        filterUrl = `${apiUrl}/genre?genre=${genre}`;
-    }
-    else
-    {
-        filterUrl = apiUrl;
-    }
+    fetchAndPopulateGenres();
 
-    console.log(`Fetching from: ${filterUrl}`);  // For debugging
+    const dropdownElement = document.getElementById('movieFilter');
+    dropdownElement.addEventListener('change', function() {
+        const selectedGenreId = dropdownElement.value;
+        fetchAndDisplayMoviesByGenre(selectedGenreId);
+    });
 
-    // Clear the movie container
-    movieContainer.innerHTML = '';
-
-    fetch(filterUrl)
+    fetch(apiUrl)
         .then(response => response.json())
         .then(movies =>
         {
@@ -46,5 +44,5 @@ export function filterMovies(genre, apiUrl, movieContainer)
                 });
             });
         })
-        .catch(error => console.error("An error occurred:", error));
-}
+        .catch(error => console.error("Error fetching movies:", error));
+});
