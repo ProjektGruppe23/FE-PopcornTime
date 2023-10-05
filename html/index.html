@@ -7,10 +7,26 @@
 </head>
 <body>
 
+<div id="movie-details">
+    <h1 id="title">Movie-title-placeholder</h1>
+    <h4 id="genre">Movie-genre-placeholder</h4>
+    <h4 id="age">Movie-age-placeholder</h4>
+    <h4 id="length">Movie-length-placeholder</h4>
+    <h4 id="theatre">Movie-theatre-placeholder</h4>
+    <h4 id="date">Movie-date-placeholder</h4>
+    <h4 id="time">Movie-time-placeholder</h4>
+</div>
+
+<div class="loading-screen" id="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+</div>
+
+<h1 id="chooseSeatHeader">Choose your seat(s)</h1>
 <ul class="showcase">
     <li>
         <div class="seat"></div>
-        <small>N/A</small>
+        <small>Available</small>
     </li>
 
     <li>
@@ -19,7 +35,7 @@
     </li>
 
     <li>
-        <div class="seat occupied"></div>
+        <div class="seat booked"></div>
         <small>Occupied</small>
     </li>
 </ul>
@@ -29,9 +45,16 @@
 
 </div>
 
-<p class="text">
-    You have selected <span id="count">0</span> seats for a price of $<span id="total">0</span>
-</p>
+<div id="text">
+    <p class="text">
+        You have selected<span id="count">0</span>
+    </p>
+</div>
+
+<div id="btn">
+    <button>Confirm</button>
+</div>
+
 </body>
 <script src="../script/script.js"></script>
 </html>

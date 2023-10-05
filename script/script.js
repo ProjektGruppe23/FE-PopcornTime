@@ -1,28 +1,27 @@
-
 let clickedSeatIds = new Set();
 
-function getSeatId()
-{
+function getSeatId() {
     const seatId = this.id;
-    console.log(seatId)
+    console.log(seatId);
 }
 
-function changeSeatStatusToSelected()
-{
+function changeSeatStatusToSelected() {
     this.classList.add('selected');
-    this.addEventListener('click', changeSelectedSeatStatusToAvailable)
+    this.addEventListener('click', changeSelectedSeatStatusToAvailable);
     const seatId = this.id;
     clickedSeatIds.add(seatId);
     console.log(Array.from(clickedSeatIds));
+    countSelectedSeats();
 }
 
 function changeSelectedSeatStatusToAvailable() {
     this.classList.remove('selected');
-    this.removeEventListener('click', changeSelectedSeatStatusToAvailable); // Remove the event listener
+    this.removeEventListener('click', changeSelectedSeatStatusToAvailable);
     this.addEventListener('click', changeSeatStatusToSelected);
     const seatId = this.id;
     clickedSeatIds.delete(seatId);
     console.log(Array.from(clickedSeatIds));
+    countSelectedSeats();
 }
 
 function createSeats(rows, seatsPerRow) {
@@ -37,9 +36,9 @@ function createSeats(rows, seatsPerRow) {
             const seatDiv = document.createElement('div');
             seatDiv.classList.add('seat');
             seatCount++;
-            seatDiv.id = seatCount.toString(); // Assign unique seat IDs
-            seatDiv.addEventListener('click', getSeatId); // Add a click event listener
-            seatDiv.addEventListener('click', changeSeatStatusToSelected)
+            seatDiv.id = seatCount.toString();
+            seatDiv.addEventListener('click', getSeatId);
+            seatDiv.addEventListener('click', changeSeatStatusToSelected);
             rowDiv.appendChild(seatDiv);
         }
         container.appendChild(rowDiv);
@@ -47,14 +46,9 @@ function createSeats(rows, seatsPerRow) {
 }
 
 function fetchBookedSeats() {
-    fetch('http://localhost:8080/getBookedSeats') // Use the correct endpoint
+    fetch('http://localhost:8080/getBookedSeats')
         .then(response => response.json())
         .then(data => {
-            // data contains the list of booked seats from the server
-            console.log(data);
-
-            // Now you can work with the data in JavaScript
-            // For example, you can loop through the booked seats and mark them as booked
             data.forEach(bookedSeat => {
                 const seatElement = document.getElementById(bookedSeat.id.toString());
                 if (seatElement) {
@@ -68,8 +62,44 @@ function fetchBookedSeats() {
         });
 }
 
+function fetchMovieDetails() {
+    fetch('http://localhost:8080/getMovieDetails')
+        .then(response => response.json())
+        .then(data => {
+            const movieTitle = document.getElementById('title');
+            const movieLength = document.getElementById('length');
+            const movieDate = document.getElementById('date');
+            const movieTime = document.getElementById('time');
+            const movieGenre = document.getElementById('genre');
+            const movieAge = document.getElementById('age');
+            movieTitle.innerText = data.title;
+            movieDate.innerText = data.date;
+            movieTime.innerText = data.time;
+            movieLength.innerText = data.length;
+            movieGenre.innerText = data.genre;
+            movieAge.innerText = data.age;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+}
+
+function countSelectedSeats() {
+    const selectedSeats = clickedSeatIds.size;
+    const selectedSeatsCount = document.getElementById('count');
+    selectedSeatsCount.innerHTML = "";
+    selectedSeatsCount.innerText = selectedSeats.toString();
+
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    setTimeout(() => {
+        loadingScreen.style.display = 'none'; // Hide the loading screen after 3 seconds
+    }, 1);
+    fetchMovieDetails();
     fetchBookedSeats();
     createSeats(25, 16);
-
 });
+
+
