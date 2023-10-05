@@ -69,6 +69,7 @@ function fetchBookedSeats() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    createSeats(25, 16);
     fetchBookedSeats();
+    createSeats(25, 16);
+
 });

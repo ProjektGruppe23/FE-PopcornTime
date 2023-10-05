@@ -33,8 +33,8 @@ body {
     background-color: #6feaf6;
 }
 
-.seat.occupied {
-    background-color: #fff;
+.seat.booked {
+    background-color: #b41d2a;
 }
 
 .seat:nth-of-type(3) {
@@ -45,7 +45,7 @@ body {
     margin-left: 18px;
 }
 
-.seat:not(.occupied):hover {
+.seat:not(.booked):hover {
     cursor: pointer;
     transform: scale(1.2);
 }
