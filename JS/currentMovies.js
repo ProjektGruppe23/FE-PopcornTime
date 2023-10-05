@@ -19,19 +19,19 @@ document.addEventListener("DOMContentLoaded", function ()
                     </div>
                 `;
                 movieContainer.innerHTML += movieCard;
+
+                movieContainer.addEventListener('click', function (event)
+                {
+                    const target = event.target;
+                    //const movieId = target.getAttribute('data-movieid');
+
+                    if (target.tagName === 'BUTTON' || target.tagName === 'IMG')
+                    {
+                        window.location.href = "https://cinemaxx.dk/koebenhavn/kommende-film";
+                        //`somepage.html?movie=${movieId}`;
+                    }
+                });
             });
         })
         .catch(error => console.error("Error fetching movies:", error));
-
-    movieContainer.addEventListener('click', function (event)
-    {
-        const target = event.target;
-        //const movieId = target.getAttribute('data-movieid');
-
-        if (target.tagName === 'BUTTON' || target.tagName === 'IMG')
-        {
-            window.location.href = "https://cinemaxx.dk/koebenhavn/kommende-film";
-                //`somepage.html?movie=${movieId}`;
-        }
-    });
 });
