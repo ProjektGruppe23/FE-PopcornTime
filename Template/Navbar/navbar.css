@@ -1,52 +1,44 @@
-body
-{
+body {
     margin: 0;
     padding: 0;
 
 }
 
-nav
-{
+nav {
     background-color: #541108;
     margin: 0;
     padding: 10px 0;
     position: sticky;
 }
 
-ul
-{
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-li
-{
+li {
     display: inline;
     margin-right: 20px;
     margin-left: 20px;
 }
 
-a
-{
+a {
     text-decoration: none;
     color: #000000;
     font-weight: bold;
 }
 
-a:hover
-{
+a:hover {
     color: #ff9900;
 }
 
-#searchbar-div
-{
+#searchbar-div {
     float: right;
     padding-right: 20px;
 }
 
-#Searchbar-input
-{
+#Searchbar-input {
     background-color: #1e2738;
     color: #7a7777;
     border-radius: 7px 0px 0px 7px;
@@ -55,8 +47,7 @@ a:hover
     margin-right: -2px;
 }
 
-#Searchbar-Button
-{
+#Searchbar-Button {
     background-color: #1e2738;
     color: #7a7777;
     height: 22px;

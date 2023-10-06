@@ -78,7 +78,7 @@ async function populateMovieDetails(movieId)
         let genreHTML = "Genres: ";
         genres.forEach(function (genre)
         {
-            genreHTML += `<span class="genre">${genre}</span>`;
+            genreHTML += `<span class="genre">${genre}</span> `;
         });
         document.getElementById('genres').innerHTML = genreHTML;
     }
@@ -109,10 +109,18 @@ document.addEventListener("DOMContentLoaded", async function ()
 {
     try
     {
-        const movieId = 5;
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('movieId');
         console.log(`Fetched movie ID from URL: ${movieId}`);  // Debugging line
-        await populateMovieDetails(movieId);
-        showtimes.addEventListener('click', handleShowtimeClick);
+        if (movieId)
+        {
+            await populateMovieDetails(movieId);
+            showtimes.addEventListener('click', handleShowtimeClick);
+        }
+        else
+        {
+            console.error("No movieId found in URL");
+        }
     }
     catch (error)
     {

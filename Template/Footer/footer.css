@@ -1,34 +1,29 @@
-footer
-{
+footer {
     background-color: #541108;
     padding: 10px 0;
     margin-top: auto;
 }
 
-body
-{
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-ul
-{
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     margin-top: auto
 }
 
-li
-{
+li {
     display: inline;
     margin-right: 20px;
     margin-left: 20px;
 
 }
 
-a:hover
-{
+a:hover {
     color: #ff9900;
 }

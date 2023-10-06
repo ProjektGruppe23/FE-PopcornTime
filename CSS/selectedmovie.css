@@ -44,7 +44,7 @@ body {
 #showtimes {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10%;  /* Space between boxes */
+    gap: 10%; /* Space between boxes */
     margin-bottom: 10%;
 }
 
@@ -61,12 +61,10 @@ body {
     box-shadow: #cccccc 1px 1px 8px;
 }
 
-#showtimes > button:hover
-{
+#showtimes > button:hover {
     opacity: 70%;
     box-shadow: #cccccc 10px 10px 15px;
 }
-
 
 
 /* Description and Movie Details */
@@ -80,7 +78,7 @@ body {
     text-align: center;
 }
 
-#description{
+#description {
     width: 65%;
     justify-content: left;
     text-align: left;

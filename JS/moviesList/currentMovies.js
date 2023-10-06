@@ -1,67 +1,87 @@
-import { fetchAndPopulateGenres } from './modules/populateGenres.js';
-import { fetchAndDisplayMoviesByGenre } from './modules/fetchAndDisplayMoviesByGenre.js';
-import { showLoadingScreen, hideLoadingScreen } from './modules/loadingScreen.js';
+import {fetchAndPopulateGenres} from './modules/populateGenres.js';
+import {fetchAndDisplayMoviesByGenre} from './modules/fetchAndDisplayMoviesByGenre.js';
+import {hideLoadingScreen, showLoadingScreen} from './modules/loadingScreen.js';
 
 const apiUrl = "http://localhost:8080/movies/current";
 const movieContainer = document.getElementById('movie-container');
 const dropdownElement = document.getElementById('movieFilter');
 
-const clearMovieContainer = () => {
+const clearMovieContainer = () =>
+{
     movieContainer.innerHTML = '';
 };
 
-const populateMovieCard = (movie) => {
+const populateMovieCard = (movie) =>
+{
     const movieCard = `
         <div class="movie-card">
-            <img src="${movie.picture}" alt="${movie.title}">
+            <img data-movieId="${movie.id}" src="${movie.picture}" alt="${movie.title}">
             <div class="movie-title">${movie.title}</div>
             <div class="movie-period">playing dates: Date -> Date</div>
-            <button id="selectMovie" class="button-style">Select movie <span id="arrow">&#8702</span></button>
+            <button data-movieId="${movie.id}" id="selectMovie" class="button-style">Select movie <span id="arrow">&#8702</span></button>
         </div>
     `;
     movieContainer.innerHTML += movieCard;
 };
 
-const handleMovieCardClick = (event) => {
+
+const handleMovieCardClick = (event) =>
+{
     const target = event.target;
     const movieId = target.getAttribute('data-movieId');
-
     console.log(`movieId from clicked element: ${movieId}`);  // Debugging line
 
-    if (target.tagName === 'BUTTON' || target.tagName === 'IMG') {
+    if (movieId && (target.tagName === 'BUTTON' || target.tagName === 'IMG'))
+    {
         const url = `http://localhost:63342/FE-PopcornTime/HTML/selectedmovie.html?movieId=${movieId}`;
         console.log(`Redirecting to URL: ${url}`);  // Debugging line
         window.location.href = url;
+    }
+    else
+    {
+        console.log(`Element clicked does not have a movieId or is not a button or image`);
     }
 };
 
 showLoadingScreen();
 
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", async function ()
+{
     fetchAndPopulateGenres();
 
-    dropdownElement.addEventListener('change', async () => {
+    dropdownElement.addEventListener('change', async () =>
+    {
         const selectedGenreId = dropdownElement.value;
         showLoadingScreen();
         clearMovieContainer();
 
-        try {
+        try
+        {
             await fetchAndDisplayMoviesByGenre(selectedGenreId, populateMovieCard);
-        } catch (error) {
+        }
+        catch (error)
+        {
             console.error("Error fetching movies:", error);
-        } finally {
+        }
+        finally
+        {
             hideLoadingScreen();
         }
     });
 
-    try {
+    try
+    {
         const movies = await fetch(apiUrl).then((response) => response.json());
         clearMovieContainer();
         movies.forEach(populateMovieCard);
         movieContainer.addEventListener('click', handleMovieCardClick);
-    } catch (error) {
+    }
+    catch (error)
+    {
         console.error("Error fetching movies:", error);
-    } finally {
+    }
+    finally
+    {
         hideLoadingScreen();
     }
 });
