@@ -1,53 +1,42 @@
-document.addEventListener("DOMContentLoaded", async function () {
-    const selectedMovieUrl = "localhost:8080/selectedmovie/${movieid}";
-    const bodyContainer = document.getElementById("body");
-
-    async function fetchAnyUrl(url) {
-        try {
-            const response = await fetch(url);
-            if (response.ok) {
-                return await response.json();
-            } else {
-                throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
-            }
-        } catch (error) {
-            console.error("Fetch Error:", error);
-            throw error;
-        }
-    }
-
-    bodyContainer.innerHTML = '';
-
+// Function to fetch a single movie by ID
+async function fetchMovieById(movieid) {
+    const apiUrl = `http://localhost:8080/selectedmovie/${movieid}`;
     try {
-        const movie = await fetchAnyUrl(selectedMovieUrl);
-
-        const movieObj =
-            {
-                title: movie.title,
-                description: movie.description,
-                picture: movie.picture,
-                start_date: movie.start_date,
-                length: movie.length,
-                end_date: movie.end_date,
-                age_limit: movie.age_limit
-            };
-
-        const movieCard = `
-        <div class="movie-card">
-                <img src="${movie.picture}" alt="${movie.title}">
-                <div class="movie-title">${movie.title}</div>
-                <div class="movie-period">playing dates: ${movie.start_date} -> ${movie.end_date}</div>
-                <button id="selectMovie" class="button-style" >Select movie <span id="arrow">&#8702</span></button>
-            </div>
-        `;
-
-        bodyContainer.innerHTML = movieCard;
-
-        return movieObj;
-
-    } catch (error)
-    {
-        console.error("Error fetching movie", error);
+        const response = await fetch(apiUrl);
+        if (response.ok) {
+            return await response.json();
+        } else {
+            console.error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error("Fetch Error:", error);
     }
+}
 
+// Function to populate movie details into HTML
+function populateMovieDetails(movie) {
+    document.getElementById('movie-title').innerText = movie.title;
+    document.getElementById('movie-picture').innerHTML = `<img src="${movie.picture}" alt="${movie.title}">`;
+    document.getElementById('description').innerText = movie.description;
+
+    document.getElementById('movie-details').innerText = `
+        Genre: ${movie.genre} 
+        Age Limit: ${movie.ageLimit}
+        Length: ${movie.length} 
+        Start Date: ${movie.startDate}
+        End Date: ${movie.endDate}
+    `;
+}
+
+// Initialize
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        const movieid = 4;  // Replace with the actual movie ID
+        const movie = await fetchMovieById(movieid);
+        if (movie) {
+            populateMovieDetails(movie);
+        }
+    } catch (error) {
+        console.error("Error fetching movie:", error);
+    }
 });
