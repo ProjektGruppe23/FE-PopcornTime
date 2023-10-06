@@ -1,6 +1,18 @@
 import { fetchAndPopulateGenres } from './modules/populateGenres.js';
 import { fetchAndDisplayMoviesByGenre } from './modules/fetchAndDisplayMoviesByGenre.js';
 
+// Loading screen functions
+
+function showLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.display = 'flex'; // Show the loading screen
+}
+
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.display = 'none'; // Hide the loading screen
+}
+
 document.addEventListener("DOMContentLoaded", function ()
 {
     // Replace this URL with your backend API URL
@@ -12,7 +24,9 @@ document.addEventListener("DOMContentLoaded", function ()
     const dropdownElement = document.getElementById('movieFilter');
     dropdownElement.addEventListener('change', function() {
         const selectedGenreId = dropdownElement.value;
-        fetchAndDisplayMoviesByGenre(selectedGenreId);
+        showLoadingScreen(); // Show the loading screen
+        fetchAndDisplayMoviesByGenre(selectedGenreId)
+            .then(() => hideLoadingScreen()); // Hide the loading screen
     });
 
     fetch(apiUrl)
