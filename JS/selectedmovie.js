@@ -16,7 +16,7 @@ async function fetchAnyUrl(apiUrl)
 // Function to populate movie details into HTML
 async function populateMovieDetails(movieid)
 {
-    const movie = await fetchAnyUrl(`http://localhost:8080/selectedmovie/${movieid}`);
+    const movie = await fetchAnyUrl(`http://localhost:8080/movie/${movieid}`);
     const showtimes = await fetchAnyUrl(`http://localhost:8080/showtimes/${movieid}`);
     const genres = await fetchAnyUrl(`http://localhost:8080/genres/${movieid}`);
 

@@ -7,7 +7,7 @@ export async function fetchAndDisplayMoviesByGenre(genreId, populateMovieCard) {
             if (response.ok) {
                 return await response.json();
             } else {
-                throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+                return `Failed to fetch data: ${response.status} ${response.statusText}`;
             }
         } catch (error) {
             console.error("Fetch Error:", error);
