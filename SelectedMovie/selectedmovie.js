@@ -39,7 +39,7 @@ async function populateMovieDetails(movieid)
     }
 
     if (showtimes) {
-        let showtimeHTML = "Showtimes: ";
+        let showtimeHTML = "";
         showtimes.forEach(function(showtime) {
             showtimeHTML += `<div class="showtime">${showtime}</div>`;
         });

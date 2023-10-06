@@ -1,76 +1,67 @@
 /* General container adjustments */
-
-body
-{
+body {
     background-color: #2B0302;
 }
 
-#upper-container {
+#upper-container, #lower-container {
     display: flex;
     flex-direction: row;
-    margin: 5% 5% 0 5%;
     padding: 10%;
-    background-color: #050204;
-    border-radius-topleft: 10%;
     border: none;
-    text-align: center;
 }
 
-#lower-container {
-    display: flex;
-    flex-direction: row;
-    margin: auto 5% 0 5%;
-    padding: 0%;
-    background-color: #050204;
-    border: none;
-    text-align: center;
-}
-
-/* 1. Picture to the right (30% of screen width) */
+/* Picture */
 #picture img {
-    width: 150%;
+    width: 100%;
     height: auto;
 }
 
 #picture {
     width: 30%;
+    height: auto;
+    margin-right: 10%;
 }
 
-/* 2 & 3. Title to the right of the picture and showtimes under title */
+/* Title */
 #title-showtimes-container {
     width: 70%;
-    color: #cccccc;
-}
-
-#title {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #cccccc;
-}
-
-#showtimes {
-    display: flex;
     flex-direction: column;
     color: #cccccc;
 }
 
-/* 4. Description under the picture to the left */
-#description {
-    width: 50%;
+#title {
+    margin-top: 0.5%;
+    margin-bottom: 10%;
     color: #cccccc;
 }
 
-/* 5. Movie details to the right under the showtimes */
-#movie-details {
-    width: 50%;
+/* Showtimes */
+#showtimes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;  /* Wrap to the next line */
+    color: #cccccc;
+    gap: 5%;  /* Space between boxes */
+}
+
+#showtimes > div {
     border: 2px solid #ccc;
-    padding: 15px;
-    margin-left: 15px;
-    color: #cccccc;
+    padding: 10px;
+    border-radius: 5px;  /* Rounded corners */
 }
 
-#movie-details > div {
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
+/* Description and Movie Details */
+#lower-container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#description, #movie-details {
+    width: 50%;
     color: #cccccc;
+    margin: 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
 }
