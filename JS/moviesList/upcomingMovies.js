@@ -24,7 +24,7 @@ const populateMovieCard = (movie) => {
 
 const handleMovieCardClick = (event) => {
     const target = event.target;
-    // const movieId = target.getAttribute('data-movieid');
+    // const movieId = target.getAttribute('data-movieId');
 
     if (target.tagName === 'BUTTON' || target.tagName === 'IMG') {
         window.location.href = "https://cinemaxx.dk/koebenhavn/kommende-film";
