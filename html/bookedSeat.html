@@ -65,6 +65,7 @@
     <p class="text">
         You have selected<span id="count">0</span>
     </p>
+    <p class="text">Total price <span id="total-price">0</span></p>
 </div>
 <div id="btn">
     <button id="popup-button">Confirm</button>
@@ -74,23 +75,35 @@
         <span id="close-button" class="close-button">&times;</span>
         <h2>Booking details</h2>
         <form id="customer-details">
-        <label for="firstname">First name</label><br>
+        <div id="firstlastname-label-div">
+        <label id="firstname-label" for="firstname">First name</label><br>
+        <label id="lastname-label" for="lastname">Last name</label><br>
+        </div>
+        <div id="firstlastname-input-div">
         <input type="text" id="firstname" name="firstname"><br>
-        <label for="lastname">Last name</label><br>
         <input type="text" id="lastname" name="lastname"><br>
-            <label for="email">Email</label><br>
-            <input type="text" id="email" name="email"><br>
-            <label for="cardNumber">Card number</label><br>
-            <input type="text" id="cardNumber" name="cardNumber"><br>
-            <label for="expirationDate">Expiration date</label><br>
-            <input type="month" id="expirationDate" name="expirationDate"><br>
-            <label for="cvc/cvv">CVC/CVV</label><br>
-            <input type="text" id="cvc/cvv" name="cvc/cvv"><br>
+        </div><br>
+        <label id="email-label" for="email">Email</label>
+        <input type="text" id="email" name="email"><br><br>
+        <label id="cardNumber-label" for="cardNumber">Card number</label>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx"><br><br>
+        <div id="card-date-and-cvv-label-div">
+        <label id="expirationDate-label" for="expirationDate">Expiration date</label><br>
+        <label id="cvc/cvv-label" for="cvc/cvv">CVC/CVV</label><br>
+        </div>
+            <div id="card-date-and-cvv-input-div">
+                <input type="month" id="expirationDate" name="expirationDate"><br>
+                <input type="text" id="cvc/cvv" name="cvc/cvv"><br>
+            </div>
+
+            <div>Price-placeholder</div>
+            <div>Ticket-placeholder</div>
         <button>Submit</button>
         </form>
     </div>
 </div>
 
+<div class="ticket">Tickets</div>
 
 </body>
 <script src="../script/bookedSeat.js"></script>

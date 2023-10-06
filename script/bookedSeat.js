@@ -98,6 +98,7 @@ function countSelectedSeats() {
     const selectedSeatsCount = document.getElementById('count');
     selectedSeatsCount.innerHTML = "";
     selectedSeatsCount.innerText = selectedSeats.toString();
+    countTotalPrice();
 }
 
 function movieLengthIntoHoursAndMinutes() {
@@ -118,18 +119,17 @@ function movieLengthIntoHoursAndMinutes() {
 }
 
 
-function getSeatsFromSelectedTheatre(theatreId)
-{
-    if(theatreId === 1)
-    {
+function getSeatsFromSelectedTheatre(theatreId) {
+    if (theatreId === 1) {
         createSeats(25, 16);
-    }
-    else if(theatreId === 2)
-    {
+    } else if (theatreId === 2) {
         createSeats(20, 12);
+        // Adjust seat IDs for theatre 2 (starting from 401)
+        const seats = document.querySelectorAll('.seat');
+        seats.forEach((seat, index) => {
+            seat.id = (index + 398).toString();
+        });
     }
-
-
 }
 
 function fetchShowtime()
@@ -156,7 +156,37 @@ function fetchShowtime()
         });
 }
 
-function
+function countTotalPrice() {
+    const selectedSeats = clickedSeatIds.size;
+    const totalPrice = document.getElementById('total-price');
+    totalPrice.innerHTML = "";
+    totalPrice.innerText = selectedSeats * 120 + " kr";
+}
+
+function createTicket(seatId, theatreId)
+{
+    let row;
+    let seatEachRow;
+    const rowLetters = ['A', 'B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'W', 'V', 'X', 'Y'];
+
+    if(theatreId === 1)
+    {
+        row = 25;
+        seatEachRow = 16;
+        for(let i=0; i<rowLetters.length; i++)
+        {
+        }
+
+    }
+    else if(theatreId === 2)
+    {
+        row = 20;
+        seatEachRow = 12;
+    }
+   
+
+
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.getElementById('loading-screen');
