@@ -24,11 +24,14 @@ const populateMovieCard = (movie) => {
 
 const handleMovieCardClick = (event) => {
     const target = event.target;
-    // const movieId = target.getAttribute('data-movieid');
+    const movieId = target.getAttribute('data-movieId');
+
+    console.log(`movieId from clicked element: ${movieId}`);  // Debugging line
 
     if (target.tagName === 'BUTTON' || target.tagName === 'IMG') {
-        window.location.href = "https://cinemaxx.dk/koebenhavn/kommende-film";
-        // `somepage.html?movie=${movieId}`;
+        const url = `http://localhost:63342/FE-PopcornTime/HTML/selectedmovie.html?movieId=${movieId}`;
+        console.log(`Redirecting to URL: ${url}`);  // Debugging line
+        window.location.href = url;
     }
 };
 

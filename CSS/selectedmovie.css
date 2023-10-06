@@ -33,7 +33,7 @@ body {
 
 #title {
     margin-top: 0.5%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     color: #cccccc;
     font-size: 3rem;
     cursor: default;
@@ -45,6 +45,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10%;  /* Space between boxes */
+    margin-bottom: 10%;
 }
 
 #showtimes > button {

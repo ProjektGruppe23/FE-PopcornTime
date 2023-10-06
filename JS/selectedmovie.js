@@ -14,11 +14,11 @@ async function fetchAnyUrl(apiUrl)
 }
 
 // Function to populate movie details into HTML
-async function populateMovieDetails(movieid)
+async function populateMovieDetails(movieId)
 {
-    const movie = await fetchAnyUrl(`http://localhost:8080/movie/${movieid}`);
-    const showtimes = await fetchAnyUrl(`http://localhost:8080/showtimes/${movieid}`);
-    const genres = await fetchAnyUrl(`http://localhost:8080/genres/${movieid}`);
+    const movie = await fetchAnyUrl(`http://localhost:8080/movie/${movieId}`);
+    const showtimes = await fetchAnyUrl(`http://localhost:8080/showtimes/${movieId}`);
+    const genres = await fetchAnyUrl(`http://localhost:8080/genres/${movieId}`);
 
     if (movie)
     {
@@ -95,7 +95,7 @@ const showtimes = document.getElementById('showtimes');
 const handleShowtimeClick = (event) =>
 {
     const target = event.target;
-    // const movieId = target.getAttribute('data-movieid');
+    // const movieId = target.getAttribute('data-movieId');
 
     if (target.tagName === 'BUTTON')
     {
@@ -109,8 +109,9 @@ document.addEventListener("DOMContentLoaded", async function ()
 {
     try
     {
-        const movieid = 5;  // Replace with the actual movie ID
-        await populateMovieDetails(movieid);
+        const movieId = 5;
+        console.log(`Fetched movie ID from URL: ${movieId}`);  // Debugging line
+        await populateMovieDetails(movieId);
         showtimes.addEventListener('click', handleShowtimeClick);
     }
     catch (error)
