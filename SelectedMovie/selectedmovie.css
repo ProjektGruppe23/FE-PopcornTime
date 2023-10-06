@@ -1,0 +1,76 @@
+/* General container adjustments */
+
+body
+{
+    background-color: #2B0302;
+}
+
+#upper-container {
+    display: flex;
+    flex-direction: row;
+    margin: 5% 5% 0 5%;
+    padding: 10%;
+    background-color: #050204;
+    border-radius-topleft: 10%;
+    border: none;
+    text-align: center;
+}
+
+#lower-container {
+    display: flex;
+    flex-direction: row;
+    margin: auto 5% 0 5%;
+    padding: 0%;
+    background-color: #050204;
+    border: none;
+    text-align: center;
+}
+
+/* 1. Picture to the right (30% of screen width) */
+#picture img {
+    width: 150%;
+    height: auto;
+}
+
+#picture {
+    width: 30%;
+}
+
+/* 2 & 3. Title to the right of the picture and showtimes under title */
+#title-showtimes-container {
+    width: 70%;
+    color: #cccccc;
+}
+
+#title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #cccccc;
+}
+
+#showtimes {
+    display: flex;
+    flex-direction: column;
+    color: #cccccc;
+}
+
+/* 4. Description under the picture to the left */
+#description {
+    width: 50%;
+    color: #cccccc;
+}
+
+/* 5. Movie details to the right under the showtimes */
+#movie-details {
+    width: 50%;
+    border: 2px solid #ccc;
+    padding: 15px;
+    margin-left: 15px;
+    color: #cccccc;
+}
+
+#movie-details > div {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    color: #cccccc;
+}
