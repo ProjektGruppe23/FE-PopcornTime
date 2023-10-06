@@ -13,6 +13,8 @@ function hideLoadingScreen() {
     loadingScreen.style.display = 'none'; // Hide the loading screen
 }
 
+showLoadingScreen();
+
 document.addEventListener("DOMContentLoaded", function ()
 {
     // Replace this URL with your backend API URL
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function ()
         .then(response => response.json())
         .then(movies =>
         {
+            hideLoadingScreen();
             movies.forEach(movie =>
             {
                 const movieCard = `
