@@ -59,7 +59,7 @@ async function populateMovieDetails(movieid)
             hour = hour < 10 ? `0${hour}` : hour;
 
             // Construct formatted string
-            const formattedShowtime = `${day}.${month} - ${year} <br> time: ${hour}:${minute}`;
+            const formattedShowtime = `${day}. ${month}. ${year} <br> <span style="font-size: larger; font-weight: bold;"> Time: ${hour}.${minute}</span>`;
 
             // Insert into HTML
             showtimeHTML += `<button class="showtime-button">${formattedShowtime}</button>`;
