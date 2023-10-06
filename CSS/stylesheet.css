@@ -2,6 +2,16 @@ body {
     background-color: #2B0302;
 }
 
+.header {
+    font-size: 150px; /* Adjust the font size as needed for big letters */
+    text-align: center; /* Center the text horizontally */
+    margin-top: 150px;
+    margin-bottom: -75px;
+    font-family: sans-serif;
+    color: white;
+}
+
+
 /* Use % for fluid container */
 .container {
     max-width: 80%;

@@ -1,5 +1,8 @@
 import { fetchAndPopulateGenres } from './modules/populateGenres.js';
 import { fetchAndDisplayMoviesByGenre } from './modules/fetchAndDisplayMoviesByGenre.js';
+import { showLoadingScreen, hideLoadingScreen } from './modules/loadingScreen.js';
+
+showLoadingScreen();
 
 document.addEventListener("DOMContentLoaded", function ()
 {
@@ -12,13 +15,16 @@ document.addEventListener("DOMContentLoaded", function ()
     const dropdownElement = document.getElementById('movieFilter');
     dropdownElement.addEventListener('change', function() {
         const selectedGenreId = dropdownElement.value;
-        fetchAndDisplayMoviesByGenre(selectedGenreId);
+        showLoadingScreen(); // Show the loading screen
+        fetchAndDisplayMoviesByGenre(selectedGenreId)
+            .then(() => hideLoadingScreen());
     });
 
     fetch(apiUrl)
         .then(response => response.json())
         .then(movies =>
         {
+            hideLoadingScreen();
             movies.forEach(movie =>
             {
                 const movieCard = `
