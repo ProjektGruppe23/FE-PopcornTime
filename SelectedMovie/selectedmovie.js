@@ -1,39 +1,53 @@
-console.log("I am in selectedmovie")
+document.addEventListener("DOMContentLoaded", async function () {
+    const selectedMovieUrl = "localhost:8080/selectedmovie/${movieid}";
+    const bodyContainer = document.getElementById("body");
 
-function fetchMovieDetails()
-{
-    const movieId = document.getElementById("movieId").value;
-    const  movieDetailsDiv = document.getElementById("movieDetailsdiv");
+    async function fetchAnyUrl(url) {
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                return await response.json();
+            } else {
+                throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+            }
+        } catch (error) {
+            console.error("Fetch Error:", error);
+            throw error;
+        }
+    }
 
-    fetch('/selectedmovie/${movieId}')
-        .then(response => response.json())
-        .then(data =>
-        {
-            if (data)
+    bodyContainer.innerHTML = '';
+
+    try {
+        const movie = await fetchAnyUrl(selectedMovieUrl);
+
+        const movieObj =
             {
-                const movieDetailsdivHTML = `
-                <h2>${data.title}</h2>
-                <p>Start Date: ${data.startDate}</p>
-                <p>End Date: ${data.endDate}</p>
-                <p>Length: ${data.length}</p>
-                <p>Age Limit: ${data.ageLimit.name}</p>
-                <h3>Genres:</h3>
-                <ul>
-                    ${data.movieGenres.map(movieGenre => `<li>${movieGenre.genre.name}</li>`).join('')}
-                </ul>
-                <h3>Showtimes:</h3>
-                <ul>
-                    ${data.showtimes.map(showtime => `<li>${showtime.startTime}</li>`).join('')}
-                </ul>`;
-                movieDetailsdiv.innerHTML = movieDetailsdivHTML;
-            }
-            else
-            {
-                movieDetailsDiv.innerHTML ="<p>Movie not found</p>";
-            }
-        })
-        .catch(error =>
-        {
-            console.error("Error:", error);
-        });
-}
+                title: movie.title,
+                description: movie.description,
+                picture: movie.picture,
+                start_date: movie.start_date,
+                length: movie.length,
+                end_date: movie.end_date,
+                age_limit: movie.age_limit
+            };
+
+        const movieCard = `
+        <div class="movie-card">
+                <img src="${movie.picture}" alt="${movie.title}">
+                <div class="movie-title">${movie.title}</div>
+                <div class="movie-period">playing dates: ${movie.start_date} -> ${movie.end_date}</div>
+                <button id="selectMovie" class="button-style" >Select movie <span id="arrow">&#8702</span></button>
+            </div>
+        `;
+
+        bodyContainer.innerHTML = movieCard;
+
+        return movieObj;
+
+    } catch (error)
+    {
+        console.error("Error fetching movie", error);
+    }
+
+});
