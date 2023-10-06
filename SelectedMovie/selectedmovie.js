@@ -30,7 +30,9 @@ async function populateMovieDetails(movieid)
         document.getElementById('startDate').innerText = `Start Date: ${new Date(movie.startDate).toLocaleDateString()}`;
         document.getElementById('endDate').innerText = `End Date: ${new Date(movie.endDate).toLocaleDateString()}`;
         document.getElementById('length').innerText = `Length: ${movie.length} mins`;
-        document.getElementById('ageLimit').innerText = `Age Limit: ${movie.ageLimit}`;
+        document.getElementById('ageLimit').innerText = `Age Limit: ${movie.ageLimit.age}`;
+
+
     }
     else
     {
@@ -38,10 +40,29 @@ async function populateMovieDetails(movieid)
         document.getElementById('title').innerText = 'Movie not found';
     }
 
-    if (showtimes) {
+    if (showtimes)
+    {
         let showtimeHTML = "";
-        showtimes.forEach(function(showtime) {
-            showtimeHTML += `<div class="showtime">${showtime}</div>`;
+        showtimes.forEach(function (showtime)
+        {
+            // Convert the showtime string to a Date object - because JSON converts dates to strings
+            const date = new Date(showtime);
+
+            // Extract components
+            const day = date.getDate();  // Day of the month
+            const month = date.getMonth() + 1;  // Months are zero-based
+            const year = date.getFullYear();
+            let minute = date.getMinutes();
+            let hour = date.getHours();
+            // assign an extra 0 if the minute or hour is less than 10 (so 19:00 instead of 19:0)
+            minute = minute < 10 ? `0${minute}` : minute;
+            hour = hour < 10 ? `0${hour}` : hour;
+
+            // Construct formatted string
+            const formattedShowtime = `${day}.${month} - ${year} <br> time: ${hour}:${minute}`;
+
+            // Insert into HTML
+            showtimeHTML += `<button class="showtime-button">${formattedShowtime}</button>`;
         });
         document.getElementById('showtimes').innerHTML = showtimeHTML;
     }
@@ -52,9 +73,11 @@ async function populateMovieDetails(movieid)
         document.getElementById('showtimes').innerText = 'No showtimes available';
     }
 
-    if (genres) {
+    if (genres)
+    {
         let genreHTML = "Genres: ";
-        genres.forEach(function(genre) {
+        genres.forEach(function (genre)
+        {
             genreHTML += `<span class="genre">${genre}</span>`;
         });
         document.getElementById('genres').innerHTML = genreHTML;
@@ -67,6 +90,20 @@ async function populateMovieDetails(movieid)
     }
 }
 
+const showtimes = document.getElementById('showtimes');
+
+const handleShowtimeClick = (event) =>
+{
+    const target = event.target;
+    // const movieId = target.getAttribute('data-movieid');
+
+    if (target.tagName === 'BUTTON')
+    {
+        window.location.href = "https://cinemaxx.dk/koebenhavn/kommende-film";
+        // `somepage.html?movie=${movieId}`;
+    }
+};
+
 // Initialize
 document.addEventListener("DOMContentLoaded", async function ()
 {
@@ -74,6 +111,7 @@ document.addEventListener("DOMContentLoaded", async function ()
     {
         const movieid = 5;  // Replace with the actual movie ID
         await populateMovieDetails(movieid);
+        showtimes.addEventListener('click', handleShowtimeClick);
     }
     catch (error)
     {
