@@ -67,24 +67,26 @@ function fetchMovieDetails() {
     fetch('http://localhost:8080/getMovieDetails')
         .then(response => response.json())
         .then(data => {
-            const moviePicture = document.getElementById('picture');
-            moviePicture.setAttribute("src", data.picture)
-            moviePicture.setAttribute("alt", "hej")
-            moviePicture.setAttribute("width", 150)
-            moviePicture.setAttribute("height", 150)
-            const movieTitle = document.getElementById('title');
-            const movieLength = document.getElementById('length');
-            const movieDate = document.getElementById('date');
-            const movieTime = document.getElementById('time');
-            const movieGenre = document.getElementById('genre');
-            const movieAge = document.getElementById('age');
-            moviePicture.src = data.picture;
-            movieTitle.innerText = data.title;
-            movieDate.innerText = data.date;
-            movieTime.innerText = data.time;
-            movieLength.innerText = data.length;
-            movieGenre.innerText = data.genre;
-            movieAge.innerText = data.age;
+            data.forEach(movie => {
+                const moviePicture = document.getElementById('picture');
+                moviePicture.setAttribute("src", movie.picture);
+                moviePicture.setAttribute("alt", "hej");
+                moviePicture.setAttribute("width", 230);
+                moviePicture.setAttribute("height", 330);
+                const movieTitle = document.getElementById('title');
+                const movieDate = document.getElementById('date');
+                const movieTime = document.getElementById('time');
+                const movieGenre = document.getElementById('genre');
+                const movieAge = document.getElementById('age');
+                movieTitle.innerHTML = movie.title;
+                movieDate.innerHTML = movie.date;
+                movieTime.innerHTML = movie.time;
+                movieGenre.innerHTML = "Fantasy";
+                movieAge.innerHTML = "17";
+                movieLengthIntoHoursAndMinutes();
+                const theatreid = fetchShowtime();
+                getSeatsFromSelectedTheatre(2); //Gøres dynamisk når vi har sessions
+            })
             })
             .catch(error => {
                 console.log(error);
@@ -96,8 +98,65 @@ function countSelectedSeats() {
     const selectedSeatsCount = document.getElementById('count');
     selectedSeatsCount.innerHTML = "";
     selectedSeatsCount.innerText = selectedSeats.toString();
+}
+
+function movieLengthIntoHoursAndMinutes() {
+    fetch('http://localhost:8080/getMovieDetails')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(movie => {
+                const movieLength = document.getElementById('length');
+                const movieMinuteLength = movie.length;
+                const movieHourLength = Math.floor(movieMinuteLength / 60);
+                const movieMinuteLengthLeft = movieMinuteLength % 60;
+                movieLength.innerHTML = movieHourLength + " hours " +  movieMinuteLengthLeft + " minutes ";
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+
+function getSeatsFromSelectedTheatre(theatreId)
+{
+    if(theatreId === 1)
+    {
+        createSeats(25, 16);
+    }
+    else if(theatreId === 2)
+    {
+        createSeats(20, 12);
+    }
+
 
 }
+
+function fetchShowtime()
+{
+    fetch('http://localhost:8080/getShowtime')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(showtime => {
+                const theatre = document.getElementById('theatre');
+                theatre.innerHTML = "";
+                if(showtime.theatre_id === 1)
+                {
+                    theatre.innerHTML = "Jupiter";
+                }
+                else if(showtime.theatre_id === 2)
+                {
+                    theatre.innerHTML = "Pluto";
+                }
+                return showtime.theatre_id;
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+function
 
 document.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.getElementById('loading-screen');
@@ -106,7 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1);
     fetchMovieDetails();
     fetchBookedSeats();
-    createSeats(25, 16);
 });
 
 

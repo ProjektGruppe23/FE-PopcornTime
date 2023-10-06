@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+#picture
+{
+    box-shadow: 0px 0px 30px 3px rgba(255, 255, 255, 0.75);
+}
+
 body {
     background-color: #242333;
     display: flex;
@@ -13,6 +18,11 @@ body {
     justify-content: center;
     height: 100vh;
     font-family: 'Lato', 'sans-serif';
+}
+
+.details
+{
+    color: grey;
 }
 
 #movie-details
@@ -203,4 +213,5 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
+
 
