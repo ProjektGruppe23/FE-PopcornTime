@@ -1,6 +1,6 @@
 function loadNavbar()
 {
-    fetch('Navbar/navbar.html') //load the template
+    fetch('../Template/Navbar/navbar.html') //load the template
         .then(response => response.text())
         .then(data => {const  navbarContainer = document.getElementById('navbar');
         navbarContainer.innerHTML = data})

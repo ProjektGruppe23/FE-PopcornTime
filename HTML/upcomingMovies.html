@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <title>Movie List</title>
     <link href="../CSS/stylesheet.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Template/Footer/footer.css">
+    <link rel="stylesheet" href="../Template/Navbar/navbar.css">
+
 </head>
-<body>
+<body onload="loadNavbar(); loadFooter();">
+
+<nav id="navbar"></nav>
 
 <div id="loading-screen" class="loading-screen">
     <div class="loading-spinner"></div>
@@ -28,6 +33,10 @@
     </div>
 </div>
 
+<footer id="footer"></footer>
+
+<script src="../Template/Footer/footer.js"></script>
+<script src="../Template/Navbar/navbar.js"></script>
 <script src="../JS/moviesList/upcomingMovies.js" type="module"></script>
 </body>
 </html>

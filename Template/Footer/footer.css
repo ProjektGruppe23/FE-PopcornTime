@@ -7,7 +7,6 @@ footer
 
 body
 {
-    background-color: #1e2738;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
