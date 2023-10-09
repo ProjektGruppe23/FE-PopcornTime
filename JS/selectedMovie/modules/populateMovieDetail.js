@@ -32,6 +32,8 @@ export async function populateMovieDetails(movieId)
         let showtimeHTML = "";
         showtimes.forEach(function (showtime)
         {
+            const showtimeId = showtime.id;
+
             // Convert the showtime string to a Date object - because JSON converts dates to strings
             const date = new Date(showtime);
 
@@ -49,7 +51,7 @@ export async function populateMovieDetails(movieId)
             const formattedShowtime = `${day}. ${month}. ${year} <br> <span style="font-size: larger; font-weight: bold;"> Time: ${hour}.${minute}</span>`;
 
             // Insert into HTML
-            showtimeHTML += `<button class="showtime-button">${formattedShowtime}</button>`;
+            showtimeHTML += `<button data-showtimeId="${showtime.id}" class="showtime-button">${formattedShowtime}</button>`;
         });
         document.getElementById('showtimes').innerHTML = showtimeHTML;
     }

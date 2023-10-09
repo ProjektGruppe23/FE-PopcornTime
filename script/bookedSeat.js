@@ -45,8 +45,8 @@ function createSeats(rows, seatsPerRow) {
     }
 }
 
-function fetchBookedSeats() {
-    fetch('http://localhost:8080/getBookedSeats/{showtime_Id}')
+function fetchBookedSeats(showtime_Id) {
+    fetch(`/getBookedSeats/${showtime_Id}`)
         .then(response => response.json())
         .then(data => {
             data.forEach(bookedSeat => {
@@ -63,8 +63,8 @@ function fetchBookedSeats() {
 }
 
 
-function fetchMovieDetails() {
-    fetch('http://localhost:8080/getMovieDetails')
+function fetchMovieDetails(movieId) {
+    fetch(`/movie/${movieId}`)
         .then(response => response.json())
         .then(data => {
             data.forEach(movie => {
@@ -83,7 +83,7 @@ function fetchMovieDetails() {
                 movieTime.innerHTML = movie.time;
                 movieGenre.innerHTML = "Fantasy";
                 movieAge.innerHTML = "17";
-                movieLengthIntoHoursAndMinutes();
+                movieLengthIntoHoursAndMinutes(movie.id);
                 const theatreid = fetchShowtime();
                 getSeatsFromSelectedTheatre(2); //Gøres dynamisk når vi har sessions
             })
@@ -101,8 +101,8 @@ function countSelectedSeats() {
     countTotalPrice();
 }
 
-function movieLengthIntoHoursAndMinutes() {
-    fetch('http://localhost:8080/getMovieDetails')
+function movieLengthIntoHoursAndMinutes(movieId) {
+    fetch(`/movie/${movieId}`)
         .then(response => response.json())
         .then(data => {
             data.forEach(movie => {
@@ -132,9 +132,9 @@ function getSeatsFromSelectedTheatre(theatreId) {
     }
 }
 
-function fetchShowtime()
+function fetchShowtime(showtimeId)
 {
-    fetch('http://localhost:8080/getShowtime')
+    fetch(`/oneshowtime/${showtimeId}`)
         .then(response => response.json())
         .then(data => {
             data.forEach(showtime => {
@@ -193,8 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         loadingScreen.style.display = 'none'; // Hide the loading screen after 3 seconds
     }, 1);
+    const urlParams = new URLSearchParams(window.location.search);
+    const showtime_Id = urlParams.get('showtimeId');
     fetchMovieDetails();
-    fetchBookedSeats();
+    fetchBookedSeats(showtime_Id);
 });
+
 
 
