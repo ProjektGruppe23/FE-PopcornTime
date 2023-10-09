@@ -25,12 +25,13 @@ li {
 
 a {
     text-decoration: none;
-    color: #000000;
+    color: #fff;
     font-weight: bold;
+    font-family: Bahnschrift, sans-serif;
 }
 
 a:hover {
-    color: #ff9900;
+    color: #8c8c8c;
 }
 
 #searchbar-div {
@@ -39,8 +40,8 @@ a:hover {
 }
 
 #Searchbar-input {
-    background-color: #1e2738;
-    color: #7a7777;
+    background-color: #fff;
+    color: black;
     border-radius: 7px 0px 0px 7px;
     height: 20px;
     border: none;
@@ -48,8 +49,8 @@ a:hover {
 }
 
 #Searchbar-Button {
-    background-color: #1e2738;
-    color: #7a7777;
+    background-color: #fff;
+    color: black;
     height: 22px;
     border-radius: 0px 7px 7px 0px;
     border: none;
