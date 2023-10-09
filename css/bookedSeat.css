@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+#picture
+{
+    box-shadow: 0px 0px 30px 3px rgba(255, 255, 255, 0.75);
+}
+
+body {
+    background-color: #242333;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Lato', 'sans-serif';
+}
+
+.details
+{
+    color: grey;
+}
+
+#movie-details
+{
+    position: absolute;
+    text-align: left;
+    top:4.5%;
+    left: 5%;
+}
+
+.container {
+    perspective: 1000px;
+    margin-bottom: 30px;
+}
+
+.seat {
+    background-color: #444451;
+    height: 12px;
+    width: 15px;
+    margin: 3px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.seat.selected {
+    background-color: #6feaf6;
+}
+
+.seat.booked {
+    background-color: #b41d2a;
+}
+
+.seat:nth-of-type(3) {
+    margin-right: 18px;
+}
+
+.seat:nth-last-of-type(3) {
+    margin-left: 18px;
+}
+
+.seat:not(.booked):hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+
+
+.row:nth-last-of-type(6)
+{
+    margin-top: 20px;
+}
+
+
+.showcase {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #777;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.showcase li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.showcase li small {
+    margin-left: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+.screen {
+    background-color: #fff;
+    height: 70px;
+    width: 100%;
+    margin: 15px 0;
+    transform: rotateX(-45deg);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.75);
+}
+
+#text {
+    text-align: right;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    right: 18%;
+    z-index: -1;
+}
+
+#count
+{
+    display: inline-block;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #242333;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+#total-price
+{
+    display: inline-block;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #242333;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+#btn
+{
+    text-align: right;
+    position: absolute;
+    top: 45%;
+    left: 72%;
+    right: 0;
+    width: 10%;
+    height: 5%;
+    padding: 1% 2%;
+    border-radius: 5%;
+}
+
+#btn button {
+    font-size: 150%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    padding: 10% 20%;
+    background-color: #83131f;
+    color: white;
+}
+
+
+/*CSS for loading icon*/
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*CSS for pop-up*/
+.popup {
+    display: none;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-side {
+    text-align: center;
+    background-color: #242333;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    padding: 2.5%;
+}
+
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#firstlastname-input-div, #firstlastname-label-div
+{
+    display: flex;
+}
+
+#lastname-label
+{
+    margin: 0px 0px 0px 162px;
+}
+
+#lastname
+{
+    margin: 0px 0px 0px 20px;
+    width: 50%;
+    height:30px;
+    font-size:15pt;
+}
+
+#firstname
+{
+    width: 50%;
+    border-radius: 5px;
+    height:30px;
+    font-size:15pt;
+}
+
+#email
+{
+    width: 100%;
+    height:30px;
+    font-size:15pt;
+}
+
+#email-label
+{
+    display: flex;
+    text-align: left;
+}
+
+#cardNumber-label
+{
+    display: flex;
+    text-align: left;
+}
+
+#cardNumber
+{
+    width: 100%;
+    text-align: center;
+    height:30px;
+    font-size:15pt;
+}
+
+#card-date-and-cvv-label-div, #card-date-and-cvv-input-div
+{
+    display: flex;
+}
+
+#cvc\/cvv-label
+{
+    margin: 0px 0px 0px 134px;
+}
+
+#cvc\/cvv
+{
+    margin: 0px 0px 0px 20px;
+    width: 50%;
+    height:30px;
+    font-size:15pt;
+}
+
+#expirationDate
+{
+    width: 50%;
+    border-radius: 5px;
+    height:30px;
+    font-size:15pt;
+}
+
+/*CSS FOR TICKET*/
+
+.ticket {
+    position: relative;
+    border: 2px solid white;
+    background: #242333;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    display: inline-block;
+    padding: 1em 2em;
+}
+.ticket:before,
+.ticket:after{
+    height:90px;
+    width:45px;
+    content: '';
+    position: absolute;
+    top: 0.9em;
+    top: calc(0.9em - 1px);
+    height: 1.2em;
+    width: 0.6em;
+    border: 2px solid white;
+}
+.ticket:before {
+    left: -2px;
+    border-radius: 0 1em 1em 0;
+    border-left-color: #242333;
+}
+.ticket:after {
+    right: -2px;
+    border-radius: 1em 0 0 1em;
+    border-right-color: #242333;
+}
+
+

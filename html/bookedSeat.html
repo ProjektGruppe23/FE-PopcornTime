@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Movie Seat Booking</title>
+    <link rel="stylesheet" href="../css/bookedSeat.css">
+
+</head>
+<body>
+
+<div id="movie-details">
+    <img id="picture">
+    <br><br>
+    <h1 id="title">Movie-title-placeholder</h1>
+    <span class="details">Genre:</span>
+    <span class="details" id="genre">Movie-genre-placeholder</span>
+    <h4>
+    <span class="details">Duration:</span>
+    <span class="details" id="length">Movie-length-placeholder</span>
+    </h4>
+    <h4>
+    <span class="details">For children over:</span>
+    <span class="details" id="age">Movie-age-placeholder</span>
+    </h4>
+    <h4>
+    <span class="details">Theatre:</span>
+    <span class="details" id="theatre">Movie-theatre-placeholder</span>
+    </h4>
+    <h4>
+    <span class="details">Date:</span>
+    <span class="details" id="date">Movie-date-placeholder</span>
+    <span class="details" id="time">Movie-time-placeholder</span>
+    </h4>
+</div>
+
+<div class="loading-screen" id="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+</div>
+
+<h1 id="chooseSeatHeader">Choose your seat(s)</h1>
+<ul class="showcase">
+    <li>
+        <div class="seat"></div>
+        <small>Available</small>
+    </li>
+
+    <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+    </li>
+
+    <li>
+        <div class="seat booked"></div>
+        <small>Occupied</small>
+    </li>
+</ul>
+
+<div class="container">
+    <div class="screen"></div>
+
+</div>
+
+<div id="text">
+    <p class="text">
+        You have selected<span id="count">0</span>
+    </p>
+    <p class="text">Total price <span id="total-price">0</span></p>
+</div>
+<div id="btn">
+    <button id="popup-button">Confirm</button>
+</div>
+<div id="popup" class="popup">
+    <div class="popup-side">
+        <span id="close-button" class="close-button">&times;</span>
+        <h2>Booking details</h2>
+        <form id="customer-details">
+        <div id="firstlastname-label-div">
+        <label id="firstname-label" for="firstname">First name</label><br>
+        <label id="lastname-label" for="lastname">Last name</label><br>
+        </div>
+        <div id="firstlastname-input-div">
+        <input type="text" id="firstname" name="firstname"><br>
+        <input type="text" id="lastname" name="lastname"><br>
+        </div><br>
+        <label id="email-label" for="email">Email</label>
+        <input type="text" id="email" name="email"><br><br>
+        <label id="cardNumber-label" for="cardNumber">Card number</label>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx"><br><br>
+        <div id="card-date-and-cvv-label-div">
+        <label id="expirationDate-label" for="expirationDate">Expiration date</label><br>
+        <label id="cvc/cvv-label" for="cvc/cvv">CVC/CVV</label><br>
+        </div>
+            <div id="card-date-and-cvv-input-div">
+                <input type="month" id="expirationDate" name="expirationDate"><br>
+                <input type="text" id="cvc/cvv" name="cvc/cvv"><br>
+            </div>
+
+            <div>Price-placeholder</div>
+            <div>Ticket-placeholder</div>
+        <button>Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="ticket">Tickets</div>
+
+</body>
+<script src="../script/bookedSeat.js"></script>
+<script src="../script/popUpBookSeat.js"></script>
+</html>
