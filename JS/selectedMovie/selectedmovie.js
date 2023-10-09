@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async function ()
         console.log(`Fetched movie ID from URL: ${movieId}`);  // Debugging line
         if (movieId)
         {
+
             await populateMovieDetails(movieId);
             showtimes.addEventListener('click', handleClickEvent);
         }

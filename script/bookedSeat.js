@@ -46,7 +46,7 @@ function createSeats(rows, seatsPerRow) {
 }
 
 function fetchBookedSeats() {
-    fetch('http://localhost:8080/getBookedSeats')
+    fetch('http://localhost:8080/getBookedSeats/{showtime_Id}')
         .then(response => response.json())
         .then(data => {
             data.forEach(bookedSeat => {
