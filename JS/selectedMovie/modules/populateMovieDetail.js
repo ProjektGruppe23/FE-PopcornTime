@@ -1,20 +1,7 @@
-// Generic function to fetch data from any URL
-async function fetchAnyUrl(apiUrl)
-{
-    const response = await fetch(apiUrl);
-    if (response.ok)
-    {
-        return await response.json();
-    }
-    else
-    {
-        console.error(`Failed to fetch data: ${response.status} ${response.statusText}`);
-        return null;
-    }
-}
+import {fetchAnyUrl} from "./fetchAnyUrl.js";
 
 // Function to populate movie details into HTML
-async function populateMovieDetails(movieId)
+export async function populateMovieDetails(movieId)
 {
     const movie = await fetchAnyUrl(`http://localhost:8080/movie/${movieId}`);
     const showtimes = await fetchAnyUrl(`http://localhost:8080/showtimes/${movieId}`);
@@ -89,41 +76,3 @@ async function populateMovieDetails(movieId)
         document.getElementById('genres').innerText = 'No genres available';
     }
 }
-
-const showtimes = document.getElementById('showtimes');
-
-const handleClickEvent = (event) =>
-{
-    const target = event.target;
-    // const movieId = target.getAttribute('data-movieId');
-
-    if (target.tagName === 'BUTTON')
-    {
-        window.location.href = "https://cinemaxx.dk/koebenhavn/kommende-film";
-        // `somepage.html?movie=${movieId}`;
-    }
-};
-
-// Initialize
-document.addEventListener("DOMContentLoaded", async function ()
-{
-    try
-    {
-        const urlParams = new URLSearchParams(window.location.search);
-        const movieId = urlParams.get('movieId');
-        console.log(`Fetched movie ID from URL: ${movieId}`);  // Debugging line
-        if (movieId)
-        {
-            await populateMovieDetails(movieId);
-            showtimes.addEventListener('click', handleClickEvent);
-        }
-        else
-        {
-            console.error("No movieId found in URL");
-        }
-    }
-    catch (error)
-    {
-        console.error("Error fetching movie:", error);
-    }
-});
