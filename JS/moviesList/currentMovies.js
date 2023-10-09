@@ -15,7 +15,7 @@ const populateMovieCard = (movie) =>
 {
     const movieCard = `
         <div class="movie-card">
-            <img data-movieId="${movie.id}" src="${movie.picture}" alt="${movie.title}">
+            <img data-movieId="${movie.id}" data-ageLimit="${movie.ageLimit.age}" src="${movie.picture}" alt="${movie.title}">
             <div class="movie-title">${movie.title}</div>
             <div class="movie-period">Age Limit: ${movie.ageLimit.age}</div>
             <button data-movieId="${movie.id}" data-ageLimit="${movie.ageLimit.age}" id="selectMovie" class="button-style">Select movie</button>
