@@ -18,7 +18,7 @@ const populateMovieCard = (movie) =>
             <img data-movieId="${movie.id}" src="${movie.picture}" alt="${movie.title}">
             <div class="movie-title">${movie.title}</div>
             <div class="movie-period">playing dates: Date -> Date</div>
-            <button data-movieId="${movie.id}" id="selectMovie" class="button-style">Select movie <span id="arrow">&#8702</span></button>
+            <button data-movieId="${movie.id}" data-ageLimit="${movie.ageLimit.age}" id="selectMovie" class="button-style">Select movie <span id="arrow">&#8702</span></button>
         </div>
     `;
     movieContainer.innerHTML += movieCard;
@@ -29,19 +29,42 @@ const handleMovieCardClick = (event) =>
 {
     const target = event.target;
     const movieId = target.getAttribute('data-movieId');
+    const ageLimit = target.getAttribute('data-ageLimit');
     console.log(`movieId from clicked element: ${movieId}`);  // Debugging line
 
     if (movieId && (target.tagName === 'BUTTON' || target.tagName === 'IMG'))
     {
-        const url = `http://localhost:63342/FE-PopcornTime/HTML/selectedmovie.html?movieId=${movieId}`;
-        console.log(`Redirecting to URL: ${url}`);  // Debugging line
-        window.location.href = url;
+        const popup = document.getElementById('movie-popup');
+        popup.style.display = 'block';
+        const ageLimitPlaceholder = document.getElementById('age-limit-placeholder');
+        ageLimitPlaceholder.textContent = ageLimit;
+
+        const confirmSelectionButton = document.getElementById('confirm-selection');
+        confirmSelectionButton.addEventListener('click', () =>
+        {
+            const url = `http://localhost:63342/FE-PopcornTime/HTML/selectedmovie.html?movieId=${movieId}`;
+            console.log(`Redirecting to URL: ${url}`);  // Debugging line
+            window.location.href = url;
+
+            closePopup();
+        });
     }
     else
     {
         console.log(`Element clicked does not have a movieId or is not a button or image`);
     }
 };
+
+// Popup functions
+const closePopup = () => {
+    const popup = document.getElementById('movie-popup');
+    popup.style.display = 'none';
+};
+
+const closePopupButton = document.getElementById('close-popup');
+if (closePopupButton) {
+    closePopupButton.addEventListener('click', closePopup);
+}
 
 showLoadingScreen();
 
