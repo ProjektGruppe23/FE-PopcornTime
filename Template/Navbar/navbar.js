@@ -9,84 +9,72 @@ function loadNavbar()
         })
         .catch(error => console.error('Error loading navbar:', error))
 }
-
 const searchInput = document.getElementById('searchbar-input');
-const select = document.getElementById('movie-suggestions');
+const movieSuggestions = document.getElementById('movie-suggestions');
 const searchOptions = document.getElementById('search-options');
+const fillSugg = document.getElementById('fillSuggestions')
 
 let movieArr;
 
-function fetchAllMovies()
-{
-    return fetch('/allmovies').then((response) => response.json());
-}
 
-function fillSuggestions(item)
-{
-    const el = document.createElement("option");
-    el.textContent = item.title;
-    el.value = item.title;
-    select.appendChild(el);
-}
+document.addEventListener("DOMContentLoaded", function() {
 
-async function fetchMovies(any)
-{
-    select.innerHTML = '';
-    movieArr = await fetchAllMovies();
-    console.log(movieArr);
-    movieArr.forEach(fillSuggestions);
-}
 
-function selectedMovie()
-{
-    const selectedOption = select.options[select.selectedIndex];
-    select.value = selectedOption.value;
-}
 
-function getUserInput()
-{
-    const userInput = searchInput.value;
-    searchOptions.innerHTML = "";
-    if (userInput.length > 0)
-    {
-        movieArr.forEach(option =>
-        {
-            if (option.title.toLowerCase().includes(userInput.toLowerCase()))
-            {
-                const optionIndex = document.createElement('div');
-                optionIndex.textContent = option.title;
-                optionIndex.addEventListener('click', () => createATag(option));
-                searchOptions.appendChild(optionIndex);
-            }
-        })
+    function fetchAllMovies() {
+        console.log("Start fetchAllMovies");
+        return fetch('http://localhost:8080/allmovies').then((response) => response.json());
     }
-}
 
-function createATag(option)
-{
-    searchInput.value = option.title;
-    searchOptions.innerHTML = "";
-    const aTag = document.createElement('a');
-    aTag.textContent = option.title;
-    aTag.href = option.href;
-    document.body.appendChild(atag);
+    async function fetchMovies() {
+        console.log("Start fetchMovies");
+        movieSuggestions.innerHTML = '';
+        movieArr = await fetchAllMovies();
+        console.log(movieArr);
+        movieArr.forEach(populateDatalist);
+        populateDatalist();
+        console.log("End fetchMovies")
+    }
 
-    removeMovieFromArr(option);
+    function populateDatalist() {
+        console.log("Start populateDatalist")
+        movieSuggestions.innerHTML = '';
+        movieArr.forEach((movie) => {
+            const option = document.createElement('option');
+            option.value = movie.title;
+            option.dataset.movieId = movie.id;
+            movieSuggestions.appendChild(option);
+        });
+        console.log("end populateDatalist");
+    }
 
-}
-
-function removeMovieFromArr(option)
-{
-    for (let i = 0; i < movieArr.length; i++)
-    {
-        if (movieArr[i].title === option.title)
-        {
-            movieArr.splice(i, 1);
-            break;
+    function getUserInput() {
+        console.log("Start getUserInput");
+        const userInput = searchInput.value;
+        searchOptions.innerHTML = '';
+        if (userInput.length > 0) {
+            movieArr.forEach(option => {
+                if (option.title.toLowerCase().includes(userInput.toLowerCase())) {
+                    const optionIndex = document.createElement('div');
+                    optionIndex.textContent = option.title;
+                    optionIndex.addEventListener('click', () => createATag(option));
+                    searchOptions.appendChild(optionIndex);
+                }
+            })
         }
+        console.log("End getUserInput");
     }
-}
 
-select.addEventListener('change', selectedMovie);
-searchInput.addEventListener('click', fetchMovies);
-searchInput.addEventListener('input', getUserInput);
+    function createATag(option) {
+        console.log("Start createATag");
+        searchInput.value = option.title;
+        searchOptions.innerHTML = '';
+        const aTag = document.createElement('a');
+        aTag.textContent = option.title;
+        aTag.href = option.href;
+        document.body.appendChild(aTag);
+        console.log("End createATag");
+    }
+
+    fillSugg.addEventListener('click', fetchMovies)
+});

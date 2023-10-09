@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Movie Details</title>
     <link href="../CSS/selectedmovie.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../Template/Navbar/navbar.css">
 </head>
 <body>
 
+<nav id="navbar"></nav>
 <div id="upper-container">
     <div id="picture">
         <!-- Image will be inserted here -->
@@ -33,5 +35,7 @@
 </div>
 
 <script type="module" src="../JS/selectedMovie/selectedmovie.js"></script>
+<script src="../Template/Navbar/navbar.js" onload="loadNavbar();"></script>
+
 </body>
 </html>

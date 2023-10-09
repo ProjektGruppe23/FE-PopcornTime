@@ -8,9 +8,9 @@
     <link href="../Template/Navbar/navbar.css" rel="stylesheet">
 
 </head>
-<body onload="loadNavbar(); loadFooter();">
+<body onload="loadNavbar(); loadFooter(); ">
 
-<nav id="navbar"></nav>
+<nav id="navbar" onload="fetchMovies();"></nav>
 
 <div class="loading-screen" id="loading-screen">
     <div class="loading-spinner"></div>
@@ -35,8 +35,9 @@
 
 <footer id="footer"></footer>
 
-<script src="../Template/Footer/footer.js"></script>
-<script src="../Template/Navbar/navbar.js"></script>
+
 <script src="../JS/moviesList/currentMovies.js" type="module"></script>
+<script src="../Template/Footer/footer.js"></script>
+<script async src="../Template/Navbar/navbar.js"></script>
 </body>
 </html>
