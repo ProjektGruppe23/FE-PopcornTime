@@ -46,7 +46,7 @@ function createSeats(rows, seatsPerRow) {
 }
 
 function fetchBookedSeats(showtime_Id) {
-    fetch(`/getBookedSeats/${showtime_Id}`)
+    fetch(`http://localhost:8080/getBookedSeats/${showtime_Id}`)
         .then(response => response.json())
         .then(data => {
             data.forEach(bookedSeat => {
@@ -54,6 +54,8 @@ function fetchBookedSeats(showtime_Id) {
                 if (seatElement) {
                     seatElement.classList.add('booked');
                     seatElement.removeEventListener('click', changeSeatStatusToSelected);
+                    const theatreId = fetchShowtime(showtime_Id);
+                    getSeatsFromSelectedTheatre(theatreId);
                 }
             });
         })
@@ -63,7 +65,7 @@ function fetchBookedSeats(showtime_Id) {
 }
 
 
-function fetchMovieDetails(movieId) {
+/*function fetchMovieDetails(movieId) {
     fetch(`/movie/${movieId}`)
         .then(response => response.json())
         .then(data => {
@@ -84,13 +86,58 @@ function fetchMovieDetails(movieId) {
                 movieGenre.innerHTML = "Fantasy";
                 movieAge.innerHTML = "17";
                 movieLengthIntoHoursAndMinutes(movie.id);
-                const theatreid = fetchShowtime();
-                getSeatsFromSelectedTheatre(2); //Gøres dynamisk når vi har sessions
             })
             })
             .catch(error => {
                 console.log(error);
             });
+}*/
+
+function fetchMovieDetails(showtimeId) {
+    fetch(`http://localhost:8080/oneshowtime/${showtimeId}`)
+        .then(response => response.json())
+        .then(showtimeData => {
+            // Assuming showtimeData is an object with a 'movie' property
+            const movieId = showtimeData.movie.id;
+
+            // Now that you have the movieId, fetch movie details
+            fetch(`http://localhost:8080/movie/${movieId}`)
+                .then(response => response.json())
+                .then(movie => {
+                    // Handle movie data as you were doing before
+                    const moviePicture = document.getElementById('picture');
+                    moviePicture.setAttribute("src", movie.picture);
+                    moviePicture.setAttribute("alt", "hej");
+                    moviePicture.setAttribute("width", 230);
+                    moviePicture.setAttribute("height", 330);
+                    const movieTitle = document.getElementById('title');
+                    const movieDate = document.getElementById('date');
+                    const movieTime = document.getElementById('time');
+                    const movieAge = document.getElementById('age');
+                    movieTitle.innerHTML = movie.title;
+                    movieDate.innerHTML = movie.date;
+                    movieTime.innerHTML = movie.time;
+                    movieAge.innerHTML = "17";
+                    movieLengthIntoHoursAndMinutes(movie.id);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+            // Fetch and display genres
+            fetch(`http://localhost:8080/genres/${movieId}`)
+                .then(response => response.json())
+                .then(genres => {
+                    const movieGenre = document.getElementById('genre');
+                    movieGenre.innerHTML = genres.join(', '); // Join genres with a comma and space
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
 
 function countSelectedSeats() {
@@ -102,24 +149,22 @@ function countSelectedSeats() {
 }
 
 function movieLengthIntoHoursAndMinutes(movieId) {
-    fetch(`/movie/${movieId}`)
+    fetch(`http://localhost:8080/movie/${movieId}`)
         .then(response => response.json())
-        .then(data => {
-            data.forEach(movie => {
+        .then(movie => {
                 const movieLength = document.getElementById('length');
                 const movieMinuteLength = movie.length;
                 const movieHourLength = Math.floor(movieMinuteLength / 60);
                 const movieMinuteLengthLeft = movieMinuteLength % 60;
                 movieLength.innerHTML = movieHourLength + " hours " +  movieMinuteLengthLeft + " minutes ";
             })
-        })
         .catch(error => {
             console.log(error);
         });
 }
 
 
-function getSeatsFromSelectedTheatre(theatreId) {
+/*function getSeatsFromSelectedTheatre(theatreId) {
     if (theatreId === 1) {
         createSeats(25, 16);
     } else if (theatreId === 2) {
@@ -134,26 +179,65 @@ function getSeatsFromSelectedTheatre(theatreId) {
 
 function fetchShowtime(showtimeId)
 {
-    fetch(`/oneshowtime/${showtimeId}`)
+    let theatreId = "";
+    fetch(`http://localhost:8080/oneshowtime/${showtimeId}`)
         .then(response => response.json())
-        .then(data => {
-            data.forEach(showtime => {
+        .then(showtime => {
                 const theatre = document.getElementById('theatre');
                 theatre.innerHTML = "";
-                if(showtime.theatre_id === 1)
+                if(showtime.theatre.id === 1)
                 {
                     theatre.innerHTML = "Jupiter";
                 }
-                else if(showtime.theatre_id === 2)
+                else if(showtime.theatre.id  === 2)
                 {
                     theatre.innerHTML = "Pluto";
                 }
-                return showtime.theatre_id;
+                theatreId = showtime.theatre.id;
             })
-        })
         .catch(error => {
             console.log(error);
         });
+    return parseInt(theatreId,1000);
+}*/
+
+async function fetchShowtime(showtimeId) {
+    try {
+        const response = await fetch(`http://localhost:8080/oneshowtime/${showtimeId}`);
+        const showtime = await response.json();
+
+        const theatre = document.getElementById('theatre');
+        theatre.innerHTML = "";
+
+        if (showtime.theatre.id === 1) {
+            theatre.innerHTML = "Jupiter";
+            return 1; // Return the theaterId
+        } else if (showtime.theatre.id === 2) {
+            theatre.innerHTML = "Pluto";
+            return 2; // Return the theaterId
+        }
+
+        return 0; // Default theaterId if not found
+    } catch (error) {
+        console.log(error);
+        return 0; // Default theaterId in case of an error
+    }
+}
+
+async function initializeSeats(showtimeId) {
+    const theatreId = await fetchShowtime(showtimeId);
+
+    if (theatreId === 1) {
+        createSeats(25, 16);
+    } else if (theatreId === 2) {
+        createSeats(20, 12);
+
+        // Adjust seat IDs for theatre 2 (starting from 401)
+        const seats = document.querySelectorAll('.seat');
+        seats.forEach((seat, index) => {
+            seat.id = (index + 401).toString();
+        });
+    }
 }
 
 function countTotalPrice() {
@@ -194,9 +278,15 @@ document.addEventListener("DOMContentLoaded", () => {
         loadingScreen.style.display = 'none'; // Hide the loading screen after 3 seconds
     }, 1);
     const urlParams = new URLSearchParams(window.location.search);
-    const showtime_Id = urlParams.get('showtimeId');
-    fetchMovieDetails();
-    fetchBookedSeats(showtime_Id);
+    const showtime_Id = urlParams.get('showtime_Id');
+    if (showtime_Id) {
+        // Assuming showtimeId is an integer, you can pass it to your functions
+        fetchMovieDetails(showtime_Id);
+        fetchBookedSeats(showtime_Id);
+        initializeSeats(showtime_Id);
+    } else {
+        console.error("No showtime_Id found in URL parameters.");
+    }
 });
 
 
