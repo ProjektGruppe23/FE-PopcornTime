@@ -35,10 +35,20 @@ function getUserInput() {
     console.log("Start getUserInput");
     searchOptions.innerHTML = '';
     const userInput = searchInput.value;
-    if (userInput.length > 0) {
-        movieArr.forEach(movie => {
-            if (movie.title.toLowerCase().includes(userInput.toLowerCase())) {
-                const optionIndex = document.createElement('div');
+    if (userInput.length > 0)
+    {
+        const regex = new RegExp(`\\b${userInput}`, 'i');
+        movieArr.forEach(movie =>
+        {
+            if (regex.test(movie.title))
+            {
+                const optionIndex = document.createElement('a');
+                const imgElement = document.createElement('img');
+                imgElement.src = movie.picture;
+                imgElement.alt = movie.title
+                console.log(imgElement.src);
+                optionIndex.appendChild(imgElement);
+                optionIndex.appendChild(document.createTextNode(movie.title));
                 optionIndex.textContent = movie.title;
                 optionIndex.addEventListener('click', () =>getToPage(movie));
                 searchOptions.appendChild(optionIndex);

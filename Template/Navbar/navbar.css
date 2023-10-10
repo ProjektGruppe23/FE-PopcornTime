@@ -11,34 +11,40 @@ nav {
     position: sticky;
 }
 
-ul {
+ul
+{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-li {
+li
+{
     display: inline;
     margin-right: 20px;
     margin-left: 20px;
 }
 
-a {
+a
+{
     text-decoration: none;
     color: #000000;
     font-weight: bold;
 }
 
-a:hover {
+.navbar-buttons:hover
+{
     color: #ff9900;
 }
 
-#searchbar-div {
+#searchbar-div
+{
     float: right;
     padding-right: 20px;
 }
 
-#Searchbar-input {
+#Searchbar-input
+{
     background-color: #1e2738;
     color: #7a7777;
     border-radius: 7px 0px 0px 7px;
@@ -47,13 +53,36 @@ a:hover {
     margin-right: -2px;
 }
 
-#Searchbar-Button {
-    background-color: #1e2738;
-    color: #7a7777;
-    height: 22px;
-    border-radius: 0px 7px 7px 0px;
-    border: none;
-    margin-left: -2px;
-    border-left: #33333a solid 2px;
+.search-options a:hover
+{
+    color: #ff9900;
 }
 
+.search-options a
+{
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.search-options a img
+{
+    display: block;
+}
+
+.search-options
+{
+    height: auto;
+    width: auto;
+}
+
+#movie-suggestions
+{
+    background-color: white;
+}
+
+#movie-suggestion-list
+{
+    background-color: grey;
+    position: absolute;
+}

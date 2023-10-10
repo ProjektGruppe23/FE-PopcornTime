@@ -12,13 +12,15 @@
 
 <nav id="navbar">
     <ul>
-        <li><a href="?">Home</a></li>
-        <li><a href="?">Upcoming movies</a></li>
-        <li><a href="?">Something</a></li>
+        <li><a class="navbar-buttons" href="?">Home</a></li>
+        <li><a class="navbar-buttons" href="?">Upcoming movies</a></li>
+        <li><a class="navbar-buttons" href="?">Something</a></li>
         <div id="searchbar-div">
                 <input id="searchbar-input" placeholder="Search..." type="text">
-                <datalist id="movie-suggestions"></datalist>
-                <a id="search-options"></a>
+                <div id="movie-suggestion-list">
+                    <datalist id="movie-suggestions"></datalist>
+                    <div id="search-options" class="search-options"></div>
+                </div>
         </div>
     </ul>
 </nav>
