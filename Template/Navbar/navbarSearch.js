@@ -1,50 +1,46 @@
+document.addEventListener('DOMContentLoaded', function () {
 const searchInput = document.getElementById('searchbar-input');
 const movieSuggestions = document.getElementById('movie-suggestions');
 const searchOptions = document.getElementById('search-options');
-const fillSugg = document.getElementById('fillSuggestions')
 
 let movieArr;
 
-function fetchAllMovies()
-{
+function fetchAllMovies() {
     console.log("Start fetchAllMovies");
-    return fetch('http://localhost:8080/allmovies').then((response) => response.json());
+    return fetch(`http://localhost:8080/allmovies`).then((response) => response.json());
 }
 
-async function fetchMovies()
-{
+async function fetchMovies() {
     console.log("Start fetchMovies");
-    movieSuggestions.innerHTML = '';
     movieArr = await fetchAllMovies();
     console.log(movieArr);
     movieArr.forEach(populateDatalist);
-    populateDatalist();
-    console.log("End fetchMovies")
+    console.log("End fetchMovies");
 }
 
-function populateDatalist()
-{
-    console.log("Start populateDatalist")
+function populateDatalist() {
+    console.log("Start populateDatalist");
     movieSuggestions.innerHTML = '';
-    movieArr.forEach((movie) => {
-        const option = document.createElement('option');
-        option.value = movie.title;
-        option.dataset.movieId = movie.id;
-        movieSuggestions.appendChild(option);
+    movieArr.forEach((movie) =>
+    {
+    const option = document.createElement('option');
+    option.textContent = movie.title;
+    option.value = movie.id;
+    movieSuggestions.appendChild(option);
     });
     console.log("end populateDatalist");
 }
 
 function getUserInput() {
     console.log("Start getUserInput");
-    const userInput = searchInput.value;
     searchOptions.innerHTML = '';
+    const userInput = searchInput.value;
     if (userInput.length > 0) {
-        movieArr.forEach(option => {
-            if (option.title.toLowerCase().includes(userInput.toLowerCase())) {
+        movieArr.forEach(movie => {
+            if (movie.title.toLowerCase().includes(userInput.toLowerCase())) {
                 const optionIndex = document.createElement('div');
-                optionIndex.textContent = option.title;
-                optionIndex.addEventListener('click', () => createATag(option));
+                optionIndex.textContent = movie.title;
+                optionIndex.addEventListener('click', () =>getToPage(movie));
                 searchOptions.appendChild(optionIndex);
             }
         })
@@ -52,19 +48,12 @@ function getUserInput() {
     console.log("End getUserInput");
 }
 
-function createATag(option)
+function getToPage(movie)
 {
-    console.log("Start createATag");
-    searchInput.value = option.title;
-    searchOptions.innerHTML = '';
-    const aTag = document.createElement('a');
-    aTag.textContent = option.title;
-    aTag.href = option.href;
-    document.body.appendChild(aTag);
-    console.log("End createATag");
+    window.location.href = `http://localhost:63342/FE-PopcornTime/HTML/selectedmovie.html?movieId=${movie.id}`;
 }
 
-if (fillSugg)
-{
-    fillSugg.addEventListener('click', fetchMovies);
-}
+    searchInput.addEventListener('click', fetchMovies);
+    searchInput.addEventListener('input', getUserInput);
+});
+
