@@ -65,34 +65,6 @@ function fetchBookedSeats(showtime_Id) {
 }
 
 
-/*function fetchMovieDetails(movieId) {
-    fetch(`/movie/${movieId}`)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(movie => {
-                const moviePicture = document.getElementById('picture');
-                moviePicture.setAttribute("src", movie.picture);
-                moviePicture.setAttribute("alt", "hej");
-                moviePicture.setAttribute("width", 230);
-                moviePicture.setAttribute("height", 330);
-                const movieTitle = document.getElementById('title');
-                const movieDate = document.getElementById('date');
-                const movieTime = document.getElementById('time');
-                const movieGenre = document.getElementById('genre');
-                const movieAge = document.getElementById('age');
-                movieTitle.innerHTML = movie.title;
-                movieDate.innerHTML = movie.date;
-                movieTime.innerHTML = movie.time;
-                movieGenre.innerHTML = "Fantasy";
-                movieAge.innerHTML = "17";
-                movieLengthIntoHoursAndMinutes(movie.id);
-            })
-            })
-            .catch(error => {
-                console.log(error);
-            });
-}*/
-
 function fetchMovieDetails(showtimeId) {
     fetch(`http://localhost:8080/oneshowtime/${showtimeId}`)
         .then(response => response.json())
@@ -164,42 +136,7 @@ function movieLengthIntoHoursAndMinutes(movieId) {
 }
 
 
-/*function getSeatsFromSelectedTheatre(theatreId) {
-    if (theatreId === 1) {
-        createSeats(25, 16);
-    } else if (theatreId === 2) {
-        createSeats(20, 12);
-        // Adjust seat IDs for theatre 2 (starting from 401)
-        const seats = document.querySelectorAll('.seat');
-        seats.forEach((seat, index) => {
-            seat.id = (index + 398).toString();
-        });
-    }
-}
 
-function fetchShowtime(showtimeId)
-{
-    let theatreId = "";
-    fetch(`http://localhost:8080/oneshowtime/${showtimeId}`)
-        .then(response => response.json())
-        .then(showtime => {
-                const theatre = document.getElementById('theatre');
-                theatre.innerHTML = "";
-                if(showtime.theatre.id === 1)
-                {
-                    theatre.innerHTML = "Jupiter";
-                }
-                else if(showtime.theatre.id  === 2)
-                {
-                    theatre.innerHTML = "Pluto";
-                }
-                theatreId = showtime.theatre.id;
-            })
-        .catch(error => {
-            console.log(error);
-        });
-    return parseInt(theatreId,1000);
-}*/
 
 async function fetchShowtime(showtimeId) {
     try {
@@ -271,6 +208,35 @@ function createTicket(seatId, theatreId)
 
 
 }
+
+
+
+document.getElementById('submit-button').addEventListener('click', function (e) {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    const showtime_Id = parseInt(urlParams.get('showtime_Id')); // Parse as an integer
+    console.log(showtime_Id);
+    const email = document.getElementById('email')
+
+    const seatIdsArray = Array.from(clickedSeatIds); // Convert the Set to an array
+    const url = `http://localhost:8080/getBookedSeats?email=${email.value}&arrayParam=${seatIdsArray.join(',')}&intParam=${showtime_Id}`;
+
+    fetch(url,{
+        method: 'POST',
+    })
+        .then((response) => {
+            if (response.ok) {
+                console.log('Request successful');
+                // Handle the response if needed
+            } else {
+                console.error('Request failed');
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+});
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.getElementById('loading-screen');

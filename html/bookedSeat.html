@@ -4,9 +4,6 @@
     <meta charset="UTF-8" />
     <title>Movie Seat Booking</title>
     <link rel="stylesheet" href="../css/bookedSeat.css">
-    <script src="../script/bookedSeat.js"></script>
-    <script src="../script/popUpBookSeat.js"></script>
-
 </head>
 <body>
 
@@ -76,7 +73,7 @@
     <div class="popup-side">
         <span id="close-button" class="close-button">&times;</span>
         <h2>Booking details</h2>
-        <form id="customer-details">
+        <form id="customer-details" action="/postbookedseat/{showtime_Id}" method="post">
         <div id="firstlastname-label-div">
         <label id="firstname-label" for="firstname">First name</label><br>
         <label id="lastname-label" for="lastname">Last name</label><br>
@@ -100,7 +97,7 @@
 
             <div>Price-placeholder</div>
             <div>Ticket-placeholder</div>
-        <button>Submit</button>
+        <button id="submit-button">Submit</button>
         </form>
     </div>
 </div>
@@ -108,4 +105,6 @@
 <div class="ticket">Tickets</div>
 
 </body>
+<script src="../script/bookedSeat.js"></script>
+<script src="../script/popUpBookSeat.js"></script>
 </html>
