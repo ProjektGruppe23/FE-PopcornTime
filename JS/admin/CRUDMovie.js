@@ -11,7 +11,8 @@ const movieApiBaseUrl = "http://localhost:8080/movie";
 // Create movie object based on the form input values
 function getMovie()
 {
-    const ageLimit = document.getElementById("inpAgeLimit").value;
+    const id = document.getElementById("inpId").value;
+    const ageLimitId = document.getElementById("inpAgeLimitId").value;
     const title = document.getElementById("inpTitle").value;
     const description = document.getElementById("inpDescription").value;
     const startDate = document.getElementById("inpStartDate").value;
@@ -20,8 +21,9 @@ function getMovie()
 
     // Construct the movie object
     const movie = {
+        id: id,
         ageLimit: {
-            ageLimit: ageLimit // Nested as requested
+            id: ageLimitId // Nested as requested
         },
         endDate: endDate,
         length: length,
@@ -35,23 +37,47 @@ function getMovie()
 }
 
 // Generic function to send object as JSON
-async function sendObjectAsJson(url, object, httpMethod = 'POST')
-{
-    const response = await fetch(url, {
-        method: httpMethod,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(object)
-    });
+async function sendObjectAsJson(url, object, httpMethod = 'POST') {
+    try {
+        const response = await fetch(url, {
+            method: httpMethod,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(object)
+        });
 
-    if (!response.ok)
-    {
-        throw new Error('Something went wrong!');
+        if (response.ok) {
+            return await handleSuccess(response);
+        } else {
+            return await handleServerError(response);
+        }
+    } catch (error) {
+        handleFetchError(error);
     }
+}
 
+//---------------------------------------------------------------
+// Helper function to handle HTTP 2xx success codes
+async function handleSuccess(response) {
     return await response.json();
 }
+
+// Helper function to handle HTTP 4xx and 5xx errors
+async function handleServerError(response) {
+    const responseData = await response.json();
+    const errorMsg = `Server Error! Status: ${response.status}, Message: ${JSON.stringify(responseData)}`;
+    alert(errorMsg);
+    throw new Error(errorMsg);
+}
+
+// Helper function to handle network errors and other issues
+function handleFetchError(error) {
+    console.error('Fetch Error:', error);
+    alert('An unexpected error occurred. See console for details.');
+    throw error;
+}
+//---------------------------------------------------------------
 
 // POST movie to server
 async function postMovie()
