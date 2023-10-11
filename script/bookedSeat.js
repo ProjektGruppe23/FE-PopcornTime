@@ -1,11 +1,13 @@
 let clickedSeatIds = new Set();
 
-function getSeatId() {
+function getSeatId()
+{
     const seatId = this.id;
     console.log(seatId);
 }
 
-function changeSeatStatusToSelected() {
+function changeSeatStatusToSelected()
+{
     this.classList.add('selected');
     this.addEventListener('click', changeSelectedSeatStatusToAvailable);
     const seatId = this.id;
@@ -14,7 +16,8 @@ function changeSeatStatusToSelected() {
     countSelectedSeats();
 }
 
-function changeSelectedSeatStatusToAvailable() {
+function changeSelectedSeatStatusToAvailable()
+{
     this.classList.remove('selected');
     this.removeEventListener('click', changeSelectedSeatStatusToAvailable);
     this.addEventListener('click', changeSeatStatusToSelected);
@@ -24,15 +27,18 @@ function changeSelectedSeatStatusToAvailable() {
     countSelectedSeats();
 }
 
-function createSeats(rows, seatsPerRow) {
+function createSeats(rows, seatsPerRow)
+{
     const container = document.querySelector('.container');
     let seatCount = 0;
 
-    for (let i = 1; i <= rows; i++) {
+    for (let i = 1; i <= rows; i++)
+    {
         const rowDiv = document.createElement('div');
         rowDiv.classList.add('row');
 
-        for (let j = 1; j <= seatsPerRow; j++) {
+        for (let j = 1; j <= seatsPerRow; j++)
+        {
             const seatDiv = document.createElement('div');
             seatDiv.classList.add('seat');
             seatCount++;
@@ -45,29 +51,37 @@ function createSeats(rows, seatsPerRow) {
     }
 }
 
-function fetchBookedSeats() {
+function fetchBookedSeats()
+{
     fetch('http://localhost:8080/getBookedSeats')
         .then(response => response.json())
-        .then(data => {
-            data.forEach(bookedSeat => {
+        .then(data =>
+        {
+            data.forEach(bookedSeat =>
+            {
                 const seatElement = document.getElementById(bookedSeat.id.toString());
-                if (seatElement) {
+                if (seatElement)
+                {
                     seatElement.classList.add('booked');
                     seatElement.removeEventListener('click', changeSeatStatusToSelected);
                 }
             });
         })
-        .catch(error => {
+        .catch(error =>
+        {
             console.log(error);
         });
 }
 
 
-function fetchMovieDetails() {
+function fetchMovieDetails()
+{
     fetch('http://localhost:8080/getMovieDetails')
         .then(response => response.json())
-        .then(data => {
-            data.forEach(movie => {
+        .then(data =>
+        {
+            data.forEach(movie =>
+            {
                 const moviePicture = document.getElementById('picture');
                 moviePicture.setAttribute("src", movie.picture);
                 moviePicture.setAttribute("alt", "hej");
@@ -87,13 +101,15 @@ function fetchMovieDetails() {
                 const theatreid = fetchShowtime();
                 getSeatsFromSelectedTheatre(2); //Gøres dynamisk når vi har sessions
             })
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        })
+        .catch(error =>
+        {
+            console.log(error);
+        });
 }
 
-function countSelectedSeats() {
+function countSelectedSeats()
+{
     const selectedSeats = clickedSeatIds.size;
     const selectedSeatsCount = document.getElementById('count');
     selectedSeatsCount.innerHTML = "";
@@ -101,32 +117,41 @@ function countSelectedSeats() {
     countTotalPrice();
 }
 
-function movieLengthIntoHoursAndMinutes() {
+function movieLengthIntoHoursAndMinutes()
+{
     fetch('http://localhost:8080/getMovieDetails')
         .then(response => response.json())
-        .then(data => {
-            data.forEach(movie => {
+        .then(data =>
+        {
+            data.forEach(movie =>
+            {
                 const movieLength = document.getElementById('length');
                 const movieMinuteLength = movie.length;
                 const movieHourLength = Math.floor(movieMinuteLength / 60);
                 const movieMinuteLengthLeft = movieMinuteLength % 60;
-                movieLength.innerHTML = movieHourLength + " hours " +  movieMinuteLengthLeft + " minutes ";
+                movieLength.innerHTML = movieHourLength + " hours " + movieMinuteLengthLeft + " minutes ";
             })
         })
-        .catch(error => {
+        .catch(error =>
+        {
             console.log(error);
         });
 }
 
 
-function getSeatsFromSelectedTheatre(theatreId) {
-    if (theatreId === 1) {
+function getSeatsFromSelectedTheatre(theatreId)
+{
+    if (theatreId === 1)
+    {
         createSeats(25, 16);
-    } else if (theatreId === 2) {
+    }
+    else if (theatreId === 2)
+    {
         createSeats(20, 12);
         // Adjust seat IDs for theatre 2 (starting from 401)
         const seats = document.querySelectorAll('.seat');
-        seats.forEach((seat, index) => {
+        seats.forEach((seat, index) =>
+        {
             seat.id = (index + 398).toString();
         });
     }
@@ -136,27 +161,31 @@ function fetchShowtime()
 {
     fetch('http://localhost:8080/getShowtime')
         .then(response => response.json())
-        .then(data => {
-            data.forEach(showtime => {
+        .then(data =>
+        {
+            data.forEach(showtime =>
+            {
                 const theatre = document.getElementById('theatre');
                 theatre.innerHTML = "";
-                if(showtime.theatre_id === 1)
+                if (showtime.theatre_id === 1)
                 {
                     theatre.innerHTML = "Jupiter";
                 }
-                else if(showtime.theatre_id === 2)
+                else if (showtime.theatre_id === 2)
                 {
                     theatre.innerHTML = "Pluto";
                 }
                 return showtime.theatre_id;
             })
         })
-        .catch(error => {
+        .catch(error =>
+        {
             console.log(error);
         });
 }
 
-function countTotalPrice() {
+function countTotalPrice()
+{
     const selectedSeats = clickedSeatIds.size;
     const totalPrice = document.getElementById('total-price');
     totalPrice.innerHTML = "";
@@ -167,30 +196,57 @@ function createTicket(seatId, theatreId)
 {
     let row;
     let seatEachRow;
-    const rowLetters = ['A', 'B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'W', 'V', 'X', 'Y'];
+    const rowLetters = [
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'W',
+        'V',
+        'X',
+        'Y'
+    ];
 
-    if(theatreId === 1)
+    if (theatreId === 1)
     {
         row = 25;
         seatEachRow = 16;
-        for(let i=0; i<rowLetters.length; i++)
+        for (let i = 0; i < rowLetters.length; i++)
         {
         }
 
     }
-    else if(theatreId === 2)
+    else if (theatreId === 2)
     {
         row = 20;
         seatEachRow = 12;
     }
-   
 
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () =>
+{
     const loadingScreen = document.getElementById('loading-screen');
-    setTimeout(() => {
+    setTimeout(() =>
+    {
         loadingScreen.style.display = 'none'; // Hide the loading screen after 3 seconds
     }, 1);
     fetchMovieDetails();

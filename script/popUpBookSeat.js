@@ -4,12 +4,14 @@ const popup = document.getElementById("popup");
 const closeButton = document.getElementById("close-button");
 
 // Function to show the popup
-function showPopup() {
+function showPopup()
+{
     popup.style.display = "block";
 }
 
 // Function to close the popup
-function closePopup() {
+function closePopup()
+{
     popup.style.display = "none";
 }
 
