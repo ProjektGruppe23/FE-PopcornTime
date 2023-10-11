@@ -68,28 +68,6 @@ async function fetchBookedSeats(showtime_Id) {
     });
 }
 
-
-/*async function fetchBookedSeats(showtime_Id) {
-    console.log("fetchBookedSeats begin")
-    fetch(`http://localhost:8080/getBookedSeats/${showtime_Id}`)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(bookedSeat => {
-                const seatElement = document.getElementById(bookedSeat.id.toString());
-                if (seatElement) {
-                    seatElement.classList.add('booked');
-                    seatElement.removeEventListener('click', changeSeatStatusToSelected);
-                    //const theatreId = fetchShowtime(showtime_Id);
-                    //initializeSeats(showtime_Id);
-                }
-            });
-        })
-        .catch(error => {
-            console.log(error);
-        });
-}*/
-
-
 function fetchMovieDetails(showtimeId) {
     console.log("Fetchmoviedetails begin")
     fetch(`http://localhost:8080/oneshowtime/${showtimeId}`)
@@ -109,12 +87,8 @@ function fetchMovieDetails(showtimeId) {
                     moviePicture.setAttribute("width", 230);
                     moviePicture.setAttribute("height", 330);
                     const movieTitle = document.getElementById('title');
-                    const movieDate = document.getElementById('date');
-                    const movieTime = document.getElementById('time');
                     const movieAge = document.getElementById('age');
                     movieTitle.innerHTML = movie.title;
-                    movieDate.innerHTML = movie.date;
-                    movieTime.innerHTML = movie.time;
                     movieAge.innerHTML = "17";
                     movieLengthIntoHoursAndMinutes(movie.id);
                 })
@@ -166,11 +140,29 @@ function movieLengthIntoHoursAndMinutes(movieId) {
 
 async function fetchShowtime(showtimeId) {
     try {
-        console.log("Halløj")
+        console.log("Halløj");
         const response = await fetch(`http://localhost:8080/oneshowtime/${showtimeId}`);
-        const showtime = await await response.json();
-        console.log("Hej ulrik du er i fethshowtime")
+        const showtime = await response.json();
+        console.log("Hej ulrik du er i fethshowtime");
 
+        const datetime = document.getElementById('date-time');
+
+        const date = new Date(showtime.time_start);
+
+        // Extract components
+        const day = date.getDate();  // Day of the month
+        const month = date.getMonth() + 1;  // Months are zero-based
+        const year = date.getFullYear();
+        let minute = date.getMinutes();
+        let hour = date.getHours();
+        // assign an extra 0 if the minute or hour is less than 10 (so 19:00 instead of 19:0)
+        minute = minute < 10 ? `0${minute}` : minute;
+        hour = hour < 10 ? `0${hour}` : hour;
+
+        // Construct formatted string
+        const formattedShowtime = `${day}. ${month}. ${year} <br> <span> Time: ${hour}.${minute}</span>`;
+
+        datetime.innerHTML = formattedShowtime;
         const theatre = document.getElementById('theatre');
         theatre.innerHTML = "";
 
@@ -280,22 +272,6 @@ async function callThreeFunctions() {
         console.error("No showtime_Id found in URL parameters.");
     }
 }
-
-
-/*function callThreeFunctions()
-{
-    const urlParams = new URLSearchParams(window.location.search);
-    const showtime_Id = urlParams.get('showtime_Id');
-    if (showtime_Id) {
-        // Assuming showtimeId is an integer, you can pass it to your functions
-        fetchMovieDetails(showtime_Id);
-        initializeSeats(showtime_Id);
-        fetchBookedSeats(showtime_Id);
-    } else {
-        console.error("No showtime_Id found in URL parameters.");
-    }
-}*/
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.getElementById('loading-screen');
