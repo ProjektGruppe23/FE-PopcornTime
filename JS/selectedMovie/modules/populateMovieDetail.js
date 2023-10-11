@@ -7,6 +7,7 @@ export async function populateMovieDetails(movieId)
     const showtimes = await fetchAnyUrl(`http://localhost:8080/showtimes/${movieId}`);
     const genres = await fetchAnyUrl(`http://localhost:8080/genres/${movieId}`);
 
+
     if (movie)
     {
         document.getElementById('title').innerText = movie.title;
@@ -32,8 +33,10 @@ export async function populateMovieDetails(movieId)
         let showtimeHTML = "";
         showtimes.forEach(function (showtime)
         {
+            const showtimeId = showtime.id;
+
             // Convert the showtime string to a Date object - because JSON converts dates to strings
-            const date = new Date(showtime);
+            const date = new Date(showtime.time_start);
 
             // Extract components
             const day = date.getDate();  // Day of the month
@@ -49,7 +52,7 @@ export async function populateMovieDetails(movieId)
             const formattedShowtime = `${day}. ${month}. ${year} <br> <span style="font-size: larger; font-weight: bold;"> Time: ${hour}.${minute}</span>`;
 
             // Insert into HTML
-            showtimeHTML += `<button class="showtime-button">${formattedShowtime}</button>`;
+            showtimeHTML += `<button data-showtimeId="${showtimeId}" class="showtime-button">${formattedShowtime}</button>`;
         });
         document.getElementById('showtimes').innerHTML = showtimeHTML;
     }
