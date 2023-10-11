@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Movie Seat Booking</title>
-    <link rel="stylesheet" href="../css/bookedSeat.css">
-
+    <link rel="stylesheet" href="../CSS/bookedSeat.css">
 </head>
 <body>
 
@@ -15,21 +14,20 @@
     <span class="details">Genre:</span>
     <span class="details" id="genre">Movie-genre-placeholder</span>
     <h4>
-    <span class="details">Duration:</span>
-    <span class="details" id="length">Movie-length-placeholder</span>
+        <span class="details">Duration:</span>
+        <span class="details" id="length">Movie-length-placeholder</span>
     </h4>
     <h4>
-    <span class="details">For children over:</span>
-    <span class="details" id="age">Movie-age-placeholder</span>
+        <span class="details">For children over:</span>
+        <span class="details" id="age">Movie-age-placeholder</span>
     </h4>
     <h4>
-    <span class="details">Theatre:</span>
-    <span class="details" id="theatre">Movie-theatre-placeholder</span>
+        <span class="details">Theatre:</span>
+        <span class="details" id="theatre">Movie-theatre-placeholder</span>
     </h4>
     <h4>
     <span class="details">Date:</span>
-    <span class="details" id="date">Movie-date-placeholder</span>
-    <span class="details" id="time">Movie-time-placeholder</span>
+    <span class="details" id="date-time">Movie-date-placeholder</span>
     </h4>
 </div>
 
@@ -70,11 +68,11 @@
 <div id="btn">
     <button id="popup-button">Confirm</button>
 </div>
-<div id="popup" class="popup">
+<div class="popup" id="popup">
     <div class="popup-side">
-        <span id="close-button" class="close-button">&times;</span>
+        <span class="close-button" id="close-button">&times;</span>
         <h2>Booking details</h2>
-        <form id="customer-details">
+        <form id="customer-details" action="/postbookedseat/{showtime_Id}" method="post">
         <div id="firstlastname-label-div">
         <label id="firstname-label" for="firstname">First name</label><br>
         <label id="lastname-label" for="lastname">Last name</label><br>
@@ -92,20 +90,21 @@
         <label id="cvc/cvv-label" for="cvc/cvv">CVC/CVV</label><br>
         </div>
             <div id="card-date-and-cvv-input-div">
-                <input type="month" id="expirationDate" name="expirationDate"><br>
-                <input type="text" id="cvc/cvv" name="cvc/cvv"><br>
+                <input id="expirationDate" name="expirationDate" type="month"><br>
+                <input id="cvc/cvv" name="cvc/cvv" type="text"><br>
             </div>
 
             <div>Price-placeholder</div>
             <div>Ticket-placeholder</div>
-        <button>Submit</button>
+        <button id="submit-button">Submit</button>
         </form>
     </div>
 </div>
 
 <div class="ticket">Tickets</div>
 
-</body>
 <script src="../script/bookedSeat.js"></script>
 <script src="../script/popUpBookSeat.js"></script>
+</body>
+
 </html>

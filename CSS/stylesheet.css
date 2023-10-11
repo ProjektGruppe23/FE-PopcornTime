@@ -29,7 +29,7 @@ body {
 /* Use rem for padding, and remove border */
 .movie-card {
     margin: 2%;
-    padding: 10%;
+    padding-bottom: 5%;
     border-radius: 2rem;
     background-color: #050204;
     border: none;
@@ -79,7 +79,7 @@ body {
     margin: 5% auto 0 auto;
     border-radius: 2rem;
     cursor: pointer;
-    width: 80%; /* Use % for fluid width */
+    width: 90%; /* Use % for fluid width */
 }
 
 .button-style:hover {
@@ -149,4 +149,38 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* Style for the popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensure the popup is above other elements */
+}
+
+/* Style for the popup content */
+.popup-content {
+    background-color: #242333;
+    color: #fff;
+    font-family: Bahnschrift, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Style for the close button */
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
