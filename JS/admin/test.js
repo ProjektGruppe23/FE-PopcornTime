@@ -1,14 +1,30 @@
-console.log("I am in movieCrud");
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("I am in movieCrud");
 
 // Get buttons and input fields from HTML document and store them in variables
 const btnPostMovie = document.getElementById("btnPostMovie");
 const btnPutMovie = document.getElementById("btnPutMovie");
 const btnDeleteMovie = document.getElementById("btnDeleteMovie");
 
+// Buttons to show forms
+const btnShowCreate = document.getElementById("btnShowCreate");
+const btnShowUpdate = document.getElementById("btnShowUpdate");
+const btnShowDelete = document.getElementById("btnShowDelete");
+const btnShowRead = document.getElementById("btnShowRead");
+
+const formContainer = document.getElementById("form-container");
+
 // Base URL for the movie API
 const movieApiBaseUrl = "http://localhost:8080/movie";
 
-// Create movie object based on the form input values
+function toggleForm(show = false, readonly = false) {
+    formContainer.style.display = show ? "block" : "none";
+    const inputs = formContainer.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.readOnly = readonly;
+    });
+}
+
 function getMovie()
 {
     const id = document.getElementById("inpId").value;
@@ -38,7 +54,6 @@ function getMovie()
     return movie;
 }
 
-// Generic function to send object as JSON
 async function sendObjectAsJson(url, object, httpMethod = 'POST') {
     try {
         const response = await fetch(url, {
@@ -82,34 +97,37 @@ function handleFetchError(error) {
 //---------------------------------------------------------------
 
 // POST movie to server
-async function postMovie()
-{
+async function postMovie() {
     const movie = getMovie();
-    const postEndpoint = `${movieApiBaseUrl}`;
-    await sendObjectAsJson(postEndpoint, movie, "POST");
+    await sendObjectAsJson(`${movieApiBaseUrl}`, movie, "POST");
     alert("Movie saved");
+    toggleForm(false);
 }
 
 // PUT movie to server
-async function putMovie()
-{
+async function putMovie() {
     const movie = getMovie();
-    const putEndpoint = `${movieApiBaseUrl}/${movie.id}`;
-    await sendObjectAsJson(putEndpoint, movie, "PUT");
+    await sendObjectAsJson(`${movieApiBaseUrl}/${movie.id}`, movie, "PUT");
     alert("Movie updated");
+    toggleForm(false);
 }
 
 // DELETE movie from server
-async function deleteMovie()
-{
+async function deleteMovie() {
     const movie = getMovie();
-    const deleteEndpoint = `${movieApiBaseUrl}/${movie.id}`;
-    await sendObjectAsJson(deleteEndpoint, movie, "DELETE");
+    await sendObjectAsJson(`${movieApiBaseUrl}/${movie.id}`, movie, "DELETE");
     alert("Movie deleted");
+    toggleForm(false);
 }
 
-// Add event listeners to buttons
+// Add event listeners to CRUD buttons
 btnPostMovie.addEventListener('click', postMovie);
 btnPutMovie.addEventListener('click', putMovie);
 btnDeleteMovie.addEventListener('click', deleteMovie);
 
+// Add event listeners to show/hide form buttons
+btnShowCreate.addEventListener('click', () => toggleForm(true, false));
+btnShowUpdate.addEventListener('click', () => toggleForm(true, false));
+btnShowDelete.addEventListener('click', () => toggleForm(true, true));
+btnShowRead.addEventListener('click', () => toggleForm(true, true));
+});
