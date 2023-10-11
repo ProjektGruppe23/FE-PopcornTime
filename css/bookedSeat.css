@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: #242333;
+    background-color: #2B0302;
     display: flex;
     flex-direction: column;
     color: white;
@@ -156,10 +156,9 @@ body {
 
 #btn button {
     font-size: 150%;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.75);
     border-radius: 10px;
     padding: 10% 20%;
-    background-color: #83131f;
+    background-color: #990601;
     color: white;
 }
 
@@ -207,7 +206,7 @@ body {
 
 .popup-side {
     text-align: center;
-    background-color: #242333;
+    background-color: #2B0302;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -311,7 +310,7 @@ body {
 .ticket {
     position: relative;
     border: 2px solid white;
-    background: #242333;
+    background: #2B0302;
     color: white;
     text-transform: uppercase;
     text-align: center;
@@ -333,12 +332,12 @@ body {
 .ticket:before {
     left: -2px;
     border-radius: 0 1em 1em 0;
-    border-left-color: #242333;
+    border-left-color: #2B0302;
 }
 .ticket:after {
     right: -2px;
     border-radius: 1em 0 0 1em;
-    border-right-color: #242333;
+    border-right-color: #2B0302;
 }
 
 

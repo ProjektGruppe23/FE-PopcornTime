@@ -1,12 +1,14 @@
 // Lav click funktion
-export const handleClickEvent = (event) =>
+export const handleClickEvent= (event) =>
 {
     const target = event.target;
-    // const movieId = target.getAttribute('data-movieId');
+    const showtime_Id = target.getAttribute('data-showtimeId');
 
-    if (target.tagName === 'BUTTON')
+
+    if (showtime_Id && (target.tagName === 'BUTTON'))
     {
-        window.location.href = "https://cinemaxx.dk/koebenhavn/kommende-film";
+        console.log(showtime_Id)
+        window.location.href = `http://localhost:63342/FE-PopcornTime/HTML/bookedSeat.html?showtime_Id=${showtime_Id}`;
         // `somepage.html?movie=${movieId}`;
     }
 };
