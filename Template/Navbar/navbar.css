@@ -25,6 +25,11 @@ li
     margin-left: 20px;
 }
 
+.navbar-buttons:hover
+{
+    color: #ff9900;
+}
+
 a
 {
     text-decoration: none;
@@ -32,25 +37,35 @@ a
     font-weight: bold;
 }
 
-.navbar-buttons:hover
-{
-    color: #ff9900;
-}
-
 #searchbar-div
 {
     float: right;
-    padding-right: 20px;
+    padding-right: 90px;
 }
 
-#Searchbar-input
+#searchbar-input:focus
+{
+    outline: none;
+}
+
+#searchbar-input
 {
     background-color: #1e2738;
-    color: #7a7777;
-    border-radius: 7px 0px 0px 7px;
+    color: #bcceef;
+    border-radius: 7px 7px 7px 7px;
     height: 20px;
+    width: 169px;
     border: none;
     margin-right: -2px;
+    margin-left: 46px;
+}
+
+.search-options
+{
+    height: auto;
+    width: auto;
+    background-color: #1e2738;
+    position: absolute;
 }
 
 .search-options a:hover
@@ -60,29 +75,24 @@ a
 
 .search-options a
 {
-    display: block;
+    display: flex;
     width: auto;
     height: auto;
+    color: #bcceef;
 }
 
-.search-options a img
+.search-options img
 {
     display: block;
+    max-width: 80px;
+    max-height: 80px;
 }
 
-.search-options
+.search-options div
 {
-    height: auto;
-    width: auto;
-}
-
-#movie-suggestions
-{
-    background-color: white;
-}
-
-#movie-suggestion-list
-{
-    background-color: grey;
-    position: absolute;
+    height: 76px;
+    width: 178px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

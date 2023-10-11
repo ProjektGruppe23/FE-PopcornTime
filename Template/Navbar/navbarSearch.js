@@ -42,16 +42,16 @@ function getUserInput() {
         {
             if (regex.test(movie.title))
             {
-                const optionIndex = document.createElement('a');
+                const optionBox = document.createElement('a')
                 const imgElement = document.createElement('img');
                 imgElement.src = movie.picture;
-                imgElement.alt = movie.title
                 console.log(imgElement.src);
-                optionIndex.appendChild(imgElement);
-                optionIndex.appendChild(document.createTextNode(movie.title));
+                optionBox.appendChild(imgElement);
+                const optionIndex = document.createElement('div');
                 optionIndex.textContent = movie.title;
                 optionIndex.addEventListener('click', () =>getToPage(movie));
-                searchOptions.appendChild(optionIndex);
+                optionBox.appendChild(optionIndex);
+                searchOptions.appendChild(optionBox);
             }
         })
     }
