@@ -56,13 +56,15 @@ const handleMovieCardClick = (event) =>
 };
 
 // Popup functions
-const closePopup = () => {
+const closePopup = () =>
+{
     const popup = document.getElementById('movie-popup');
     popup.style.display = 'none';
 };
 
 const closePopupButton = document.getElementById('close-popup');
-if (closePopupButton) {
+if (closePopupButton)
+{
     closePopupButton.addEventListener('click', closePopup);
 }
 

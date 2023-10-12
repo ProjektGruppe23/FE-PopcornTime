@@ -11,50 +11,89 @@ nav {
     position: sticky;
 }
 
-ul {
+ul
+{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-li {
+li
+{
     display: inline;
     margin-right: 20px;
     margin-left: 20px;
 }
 
-a {
+.navbar-buttons:hover
+{
+    color: #ff9900;
+}
+
+a
+{
     text-decoration: none;
     color: #fff;
     font-weight: bold;
     font-family: Bahnschrift, sans-serif;
 }
 
-a:hover {
-    color: #8c8c8c;
-}
-
-#searchbar-div {
+#searchbar-div
+{
     float: right;
-    padding-right: 20px;
+    padding-right: 90px;
 }
 
-#Searchbar-input {
-    background-color: #fff;
-    color: black;
-    border-radius: 7px 0px 0px 7px;
+#searchbar-input:focus
+{
+    outline: none;
+}
+
+#searchbar-input
+{
+    background-color: #1e2738;
+    color: #bcceef;
+    border-radius: 7px 7px 7px 7px;
     height: 20px;
+    width: 169px;
     border: none;
     margin-right: -2px;
+    margin-left: 46px;
 }
 
-#Searchbar-Button {
-    background-color: #fff;
-    color: black;
-    height: 22px;
-    border-radius: 0px 7px 7px 0px;
-    border: none;
-    margin-left: -2px;
-    border-left: #33333a solid 2px;
+.search-options
+{
+    height: auto;
+    width: auto;
+    background-color: #1e2738;
+    position: absolute;
 }
 
+.search-options a:hover
+{
+    color: #ff9900;
+}
+
+.search-options a
+{
+    display: flex;
+    width: auto;
+    height: auto;
+    color: #bcceef;
+}
+
+.search-options img
+{
+    display: block;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.search-options div
+{
+    height: 76px;
+    width: 178px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

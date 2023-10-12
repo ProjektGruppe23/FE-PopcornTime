@@ -8,9 +8,9 @@
     <link href="../Template/Navbar/navbar.css" rel="stylesheet">
 
 </head>
-<body onload="loadNavbar(); loadFooter();">
+<body onload="loadNavbar(); loadFooter(); ">
 
-<nav id="navbar"></nav>
+<nav id="navbar" onload="fetchMovies();"></nav>
 
 <div class="loading-screen" id="loading-screen">
     <div class="loading-spinner"></div>
@@ -34,19 +34,20 @@
 </div>
 
 <!--POPUP-->
-<div id="movie-popup" class="popup">
+<div class="popup" id="movie-popup">
     <div class="popup-content">
-        <span id="close-popup" class="close-popup">&times;</span>
+        <span class="close-popup" id="close-popup">&times;</span>
         <h2>Age Confirmation</h2>
         <p>Are you older than <span id="age-limit-placeholder"></span> years?</p>
-        <button id="confirm-selection" class="button-style">Confirm</button>
+        <button class="button-style" id="confirm-selection">Confirm</button>
     </div>
 </div>
 
 <footer id="footer"></footer>
 
-<script src="../Template/Footer/footer.js"></script>
-<script src="../Template/Navbar/navbar.js"></script>
+
 <script src="../JS/moviesList/currentMovies.js" type="module"></script>
+<script src="../Template/Footer/footer.js"></script>
+<script async src="../Template/Navbar/navbar.js"></script>
 </body>
 </html>
