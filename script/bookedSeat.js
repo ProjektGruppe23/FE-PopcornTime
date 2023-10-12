@@ -1,3 +1,4 @@
+const submitButton = document.getElementById('submit-button');
 let clickedSeatIds = new Set();
 
 function getSeatId() {
@@ -254,6 +255,10 @@ document.getElementById('submit-button').addEventListener('click', function (e) 
         .catch((error) => {
             console.error('Error:', error);
         });
+
+    submitButton.setAttribute('href', `http://localhost:63342/FE-PopcornTime/HTML/bookingConfirmed?email=${email.value}&intParam=${showtime_Id}`);
+    window.location.href=`http://localhost:63342/FE-PopcornTime/HTML/bookingConfirmed.html?email=${email.value}&intParam=${showtime_Id}`;
+
 });
 
 async function callThreeFunctions() {
