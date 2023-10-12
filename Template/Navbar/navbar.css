@@ -4,56 +4,99 @@ body {
 
 }
 
-nav {
+#navbar-template {
     background-color: #541108;
     margin: 0;
-    padding: 10px 0;
+    padding: 18px 0;
     position: sticky;
 }
 
-ul {
+#navbar-template ul
+{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-li {
+#navbar-template li
+{
     display: inline;
     margin-right: 20px;
     margin-left: 20px;
 }
 
-a {
-    text-decoration: none;
-    color: #000000;
-    font-weight: bold;
+#navbar-template a:hover
+{
+    color: #5b5b5b;
 }
 
-a:hover {
+#navbar-template a
+{
+    text-decoration: none;
+    color: #9f9e9e;
+    font-weight: bold;
+    font-family: Bahnschrift, sans-serif;
+}
+
+#searchbar-div
+{
+    float: right;
+    padding-right: 90px;
+    margin: -4px 0px;
+}
+
+#searchbar-input:focus
+{
+    outline: none;
+}
+
+#searchbar-input
+{
+    background-color: #1e2738;
+    color: #9f9e9e;
+    border-radius: 10px 10px 10px 10px;
+    height: 25px;
+    width: 246px;
+    border: none;
+    margin-right: -2px;
+    padding-left: 10px;
+}
+
+.search-options
+{
+    height: auto;
+    width: auto;
+    background-color: #1e2738;
+    position: absolute;
+    border-radius: 0px 0px 10px 10px;
+    overflow: hidden;
+}
+
+.search-options a:hover
+{
     color: #ff9900;
 }
 
-#searchbar-div {
-    float: right;
-    padding-right: 20px;
+.search-options a
+{
+    display: flex;
+    width: auto;
+    height: auto;
+    color: #bcceef;
 }
 
-#Searchbar-input {
-    background-color: #1e2738;
-    color: #7a7777;
-    border-radius: 7px 0px 0px 7px;
-    height: 20px;
-    border: none;
-    margin-right: -2px;
+.search-options img
+{
+    display: block;
+    width: 80px;
+    height: 76px;
 }
 
-#Searchbar-Button {
-    background-color: #1e2738;
-    color: #7a7777;
-    height: 22px;
-    border-radius: 0px 7px 7px 0px;
-    border: none;
-    margin-left: -2px;
-    border-left: #33333a solid 2px;
+.search-options div
+{
+    height: 76px;
+    width: 178px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-

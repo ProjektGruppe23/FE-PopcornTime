@@ -11,15 +11,12 @@ body {
     color: white;
 }
 
-
-/* Use % for fluid container */
 .container {
     max-width: 80%;
     margin: 0 auto;
     padding: 1.25rem; /* Use rem for padding */
 }
 
-/* Use % and fr for fluid grid layout */
 #movie-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* fr is fluid by nature */
@@ -29,14 +26,13 @@ body {
 /* Use rem for padding, and remove border */
 .movie-card {
     margin: 2%;
-    padding: 10%;
+    padding-bottom: 5%;
     border-radius: 2rem;
     background-color: #050204;
     border: none;
     text-align: center;
 }
 
-/* Use % for fluid image size */
 .movie-card img {
     border-radius: 2rem;
     max-width: 100%;
@@ -48,7 +44,6 @@ body {
     opacity: 50%;
 }
 
-/* Use rem for margin and em for fluid text size */
 .movie-title {
     margin-top: 0.75rem;
     font-size: 1.2em;
@@ -65,7 +60,6 @@ body {
     cursor: default;
 }
 
-/* Use rem for text size, padding, and other dimensions */
 .button-style {
     display: block;
     text-align: center;
@@ -79,7 +73,7 @@ body {
     margin: 5% auto 0 auto;
     border-radius: 2rem;
     cursor: pointer;
-    width: 80%; /* Use % for fluid width */
+    width: 90%; /* Use % for fluid width */
 }
 
 .button-style:hover {
@@ -111,7 +105,6 @@ body {
     text-align: left;
 }
 
-/*Loading screen CSS*/
 .loading-screen {
     position: fixed;
     top: 0;
@@ -149,4 +142,35 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensure the popup is above other elements */
+}
+
+.popup-content {
+    background-color: #242333;
+    color: #fff;
+    font-family: Bahnschrift, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }

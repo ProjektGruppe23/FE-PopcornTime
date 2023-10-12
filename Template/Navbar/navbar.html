@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="navbar.js"></script>
 
 
 </head>
 <body>
 
-<nav id="navbar">
+<nav id="navbar-template">
     <ul>
-        <li><a href="?">Home</a></li>
-        <li><a href="?">Upcoming movies</a></li>
-        <li><a href="?">Something</a></li>
+        <li><a href="../HTML/currentMovies.html">Home</a></li>
+        <li><a href="../HTML/upcomingMovies.html">Upcoming movies</a></li>
         <div id="searchbar-div">
-            <form action="selectedmovie/{ID}" method="GET">
-                <input id="Searchbar-input" type="text" list="movieSuggestions" placeholder="Search...">
-                <datalist id="movieSuggestions">
-                </datalist>
-                <button id="Searchbar-Button" type="submit">Search</button>
-            </form>
+                <input id="searchbar-input" placeholder="Search..." type="text">
+                <div id="movie-suggestion-list">
+                    <datalist id="movie-suggestions"></datalist>
+                </div>
+            <div id="search-options" class="search-options"></div>
         </div>
     </ul>
 </nav>
 
 
 </body>
-<script src="navbar.js"></script>
+
 </html>
