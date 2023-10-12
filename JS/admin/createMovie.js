@@ -18,6 +18,7 @@ function getMovie()
     const startDate = document.getElementById("inpStartDate").value;
     const endDate = document.getElementById("inpEndDate").value;
     const length = document.getElementById("inpLength").value;
+    const picture = document.getElementById("inpPicture").value;
 
     // Construct the movie object
     const movie = {
@@ -29,7 +30,8 @@ function getMovie()
         length: length,
         startDate: startDate,
         title: title,
-        description: description
+        description: description,
+        picture: picture
     };
 
     console.log(movie);
