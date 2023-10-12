@@ -4,36 +4,36 @@ body {
 
 }
 
-nav {
+#navbar-template {
     background-color: #541108;
     margin: 0;
-    padding: 10px 0;
+    padding: 18px 0;
     position: sticky;
 }
 
-ul
+#navbar-template ul
 {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-li
+#navbar-template li
 {
     display: inline;
     margin-right: 20px;
     margin-left: 20px;
 }
 
-.navbar-buttons:hover
+#navbar-template a:hover
 {
-    color: #ff9900;
+    color: #5b5b5b;
 }
 
-a
+#navbar-template a
 {
     text-decoration: none;
-    color: #fff;
+    color: #9f9e9e;
     font-weight: bold;
     font-family: Bahnschrift, sans-serif;
 }
@@ -42,6 +42,7 @@ a
 {
     float: right;
     padding-right: 90px;
+    margin: -4px 0px;
 }
 
 #searchbar-input:focus
@@ -52,13 +53,13 @@ a
 #searchbar-input
 {
     background-color: #1e2738;
-    color: #bcceef;
-    border-radius: 7px 7px 7px 7px;
-    height: 20px;
-    width: 169px;
+    color: #9f9e9e;
+    border-radius: 10px 10px 10px 10px;
+    height: 25px;
+    width: 246px;
     border: none;
     margin-right: -2px;
-    margin-left: 46px;
+    padding-left: 10px;
 }
 
 .search-options
@@ -67,6 +68,8 @@ a
     width: auto;
     background-color: #1e2738;
     position: absolute;
+    border-radius: 0px 0px 10px 10px;
+    overflow: hidden;
 }
 
 .search-options a:hover
@@ -85,8 +88,8 @@ a
 .search-options img
 {
     display: block;
-    max-width: 80px;
-    max-height: 80px;
+    width: 80px;
+    height: 76px;
 }
 
 .search-options div
