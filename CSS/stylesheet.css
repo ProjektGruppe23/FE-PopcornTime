@@ -44,7 +44,7 @@ body {
     opacity: 50%;
 }
 
-movie-title {
+.movie-title {
     margin-top: 0.75rem;
     font-size: 1.2em;
     font-family: Bahnschrift, sans-serif;
