@@ -1,29 +1,36 @@
-footer {
+#footer-template {
     background-color: #541108;
     padding: 10px 0;
     margin-top: auto;
 }
 
-body {
+#footer-template body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-ul {
+#footer-template ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     margin-top: auto
 }
 
-li {
+#footer-template li {
     display: inline;
     margin-right: 20px;
     margin-left: 20px;
 
 }
 
-a:hover {
-    color: #ff9900;
+#footer-template a:hover {
+    color: #5b5b5b;
+}
+
+#footer-template a {
+    text-decoration: none;
+    color: #9f9e9e;
+    font-weight: bold;
+    font-family: Bahnschrift, sans-serif;
 }
