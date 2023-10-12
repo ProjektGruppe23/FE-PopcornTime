@@ -6,11 +6,14 @@
     <link href="../CSS/stylesheet.css" rel="stylesheet">
     <link href="../Template/Footer/footer.css" rel="stylesheet">
     <link href="../Template/Navbar/navbar.css" rel="stylesheet">
+    <script src="../Template/Navbar/navbar.js" onload="loadNavbar();"></script>
+    <script src="../Template/Navbar/navbarSearch.js"></script>
+    <script src="../Template/Footer/footer.js" onload="loadFooter();"></script>
 
 </head>
-<body onload="loadNavbar(); loadFooter(); ">
+<body>
 
-<nav id="navbar" onload="fetchMovies();"></nav>
+<nav id="navbar"></nav>
 
 <div class="loading-screen" id="loading-screen">
     <div class="loading-spinner"></div>
@@ -47,7 +50,5 @@
 
 
 <script src="../JS/moviesList/currentMovies.js" type="module"></script>
-<script src="../Template/Footer/footer.js"></script>
-<script async src="../Template/Navbar/navbar.js"></script>
 </body>
 </html>

@@ -6,9 +6,12 @@
     <link href="../CSS/stylesheet.css" rel="stylesheet">
     <link href="../Template/Footer/footer.css" rel="stylesheet">
     <link href="../Template/Navbar/navbar.css" rel="stylesheet">
+    <script src="../Template/Navbar/navbar.js" onload="loadNavbar();"></script>
+    <script src="../Template/Navbar/navbarSearch.js"></script>
+    <script src="../Template/Footer/footer.js" onload="loadFooter();"></script>
 
 </head>
-<body onload="loadNavbar(); loadFooter();">
+<body>
 
 <nav id="navbar"></nav>
 
@@ -45,8 +48,6 @@
 
 <footer id="footer"></footer>
 
-<script src="../Template/Footer/footer.js"></script>
-<script src="../Template/Navbar/navbar.js"></script>
 <script src="../JS/moviesList/upcomingMovies.js" type="module"></script>
 </body>
 </html>
