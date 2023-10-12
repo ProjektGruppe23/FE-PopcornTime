@@ -2,8 +2,6 @@ console.log("I am in updateMovie");
 
 // Get buttons and input fields from HTML document and store them in variables
 const btnPostMovie = document.getElementById("btnPostMovie");
-const btnPutMovie = document.getElementById("btnPutMovie");
-const btnDeleteMovie = document.getElementById("btnDeleteMovie");
 
 document.getElementById("btnSaveChanges").addEventListener('click', () =>
 {
@@ -65,60 +63,30 @@ async function fetchMovies()
     }
 }
 
-function populateTable(movies)
-{
+function populateTable(movies) {
     const table = document.getElementById('movieTable');
-    movies.forEach((movie) =>
-    {
+    movies.forEach((movie) => {
         const row = table.insertRow();
-        Object.values(movie).forEach((value) =>
-        {
-            const cell = row.insertCell();
-            cell.textContent = value;
-        });
 
-        // Add edit and delete buttons inside a cell
+        const titleCell = row.insertCell();
+        titleCell.textContent = movie.title;
+
+        const idCell = row.insertCell();
+        idCell.textContent = movie.id;
+
+        const startDateCell = row.insertCell();
+        startDateCell.textContent = movie.startDate;
+
+        const endDateCell = row.insertCell();
+        endDateCell.textContent = movie.endDate;
+
         const actionCell = row.insertCell();
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
         editButton.addEventListener('click', () => editMovie(movie));
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.addEventListener('click', () => deleteMovie(movie));
-
         actionCell.appendChild(editButton);
-        actionCell.appendChild(deleteButton);
     });
-}
-
-function getMovie()
-{
-    const id = document.getElementById("inpId").value;
-    const ageLimitId = document.getElementById("inpAgeLimitId").value;
-    const title = document.getElementById("inpTitle").value;
-    const description = document.getElementById("inpDescription").value;
-    const startDate = document.getElementById("inpStartDate").value;
-    const endDate = document.getElementById("inpEndDate").value;
-    const length = document.getElementById("inpLength").value;
-    const picture = document.getElementById("inpPicture").value;
-
-    // Construct the movie object
-    const movie = {
-        id: id,
-        ageLimit: {
-            id: ageLimitId // Nested as requested
-        },
-        endDate: endDate,
-        length: length,
-        startDate: startDate,
-        title: title,
-        description: description,
-        picture: picture
-    };
-
-    console.log(movie);
-    return movie;
 }
 
 async function sendObjectAsJson(url, object, httpMethod = 'POST')
@@ -155,14 +123,6 @@ async function putMovie(movie)
     alert("Movie updated");
 }
 
-async function deleteMovie(movie)
-{
-    const deleteEndpoint = `${movieApiBaseUrl}/${movie.id}`;
-    await sendObjectAsJson(deleteEndpoint, null, "DELETE");
-    alert("Movie deleted");
-    location.reload();  // This will reload the page
-}
-
 
 function editMovie(movie)
 {
@@ -175,8 +135,6 @@ function editMovie(movie)
     document.getElementById("editPicture").value = movie.picture;
     document.getElementById("editLength").value = movie.length;
 
-
-    // Show the modal (assuming the modal has a class "hidden" that sets display: none)
     document.getElementById("editMovieModal").classList.remove("hidden");
 }
 
