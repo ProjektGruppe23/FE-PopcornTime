@@ -53,7 +53,7 @@ async function fetchBookedSeats(showtime_Id) {
             .then(response => response.json())
             .then(data => {
                 data.forEach(bookedSeat => {
-                    const seatElement = document.getElementById(bookedSeat.seat.id.toString());
+                    const seatElement = document.getElementById(bookedSeat.seat);
                     if (seatElement) {
                         seatElement.classList.add('booked');
                         seatElement.removeEventListener('click', changeSeatStatusToSelected);

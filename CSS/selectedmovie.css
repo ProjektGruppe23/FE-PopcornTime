@@ -1,4 +1,3 @@
-/* General container adjustments */
 body
 {
     background-color: #2B0302;
@@ -74,7 +73,6 @@ body
     opacity: 70%;
     box-shadow: #cccccc 10px 10px 15px;
 }
-
 
 /* Description and Movie Details */
 #lower-container

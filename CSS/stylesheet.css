@@ -11,15 +11,12 @@ body {
     color: white;
 }
 
-
-/* Use % for fluid container */
 .container {
     max-width: 80%;
     margin: 0 auto;
     padding: 1.25rem; /* Use rem for padding */
 }
 
-/* Use % and fr for fluid grid layout */
 #movie-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* fr is fluid by nature */
@@ -36,7 +33,6 @@ body {
     text-align: center;
 }
 
-/* Use % for fluid image size */
 .movie-card img {
     border-radius: 2rem;
     max-width: 100%;
@@ -48,8 +44,7 @@ body {
     opacity: 50%;
 }
 
-/* Use rem for margin and em for fluid text size */
-.movie-title {
+movie-title {
     margin-top: 0.75rem;
     font-size: 1.2em;
     font-family: Bahnschrift, sans-serif;
@@ -65,7 +60,6 @@ body {
     cursor: default;
 }
 
-/* Use rem for text size, padding, and other dimensions */
 .button-style {
     display: block;
     text-align: center;
@@ -111,7 +105,6 @@ body {
     text-align: left;
 }
 
-/*Loading screen CSS*/
 .loading-screen {
     position: fixed;
     top: 0;
@@ -151,7 +144,6 @@ body {
     }
 }
 
-/* Style for the popup */
 .popup {
     display: none;
     position: fixed;
@@ -163,7 +155,6 @@ body {
     z-index: 999; /* Ensure the popup is above other elements */
 }
 
-/* Style for the popup content */
 .popup-content {
     background-color: #242333;
     color: #fff;
@@ -177,7 +168,6 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Style for the close button */
 .close-popup {
     position: absolute;
     top: 10px;
