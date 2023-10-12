@@ -207,7 +207,7 @@ function countTotalPrice() {
     totalPrice.innerText = selectedSeats * 120 + " kr";
 }
 
-function createTicket(seatId, theatreId)
+/*function createTicket(seatId, theatreId)
 {
     let row;
     let seatEachRow;
@@ -228,7 +228,7 @@ function createTicket(seatId, theatreId)
         seatEachRow = 12;
     }
 }
-
+*/
 
 
 document.getElementById('submit-button').addEventListener('click', function (e) {
