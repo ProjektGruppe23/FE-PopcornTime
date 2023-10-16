@@ -116,16 +116,9 @@ async function sendObjectAsJson(url, object, httpMethod = 'POST')
     }
 }
 
-async function putMovie(movie)
+async function editMovie(movie)
 {
-    const putEndpoint = `${movieApiBaseUrl}/${movie.id}`;
-    await sendObjectAsJson(putEndpoint, movie, "PUT");
-    alert("Movie updated");
-}
-
-
-function editMovie(movie)
-{
+    console.log(movie)
     document.getElementById("editId").value = movie.id;
     document.getElementById("editAgeLimitId").value = movie.ageLimit.id;
     document.getElementById("editTitle").value = movie.title;
@@ -136,6 +129,13 @@ function editMovie(movie)
     document.getElementById("editLength").value = movie.length;
 
     document.getElementById("editMovieModal").classList.remove("hidden");
+}
+
+async function putMovie(movie)
+{
+    const putEndpoint = `${movieApiBaseUrl}/${movie.id}`;
+    await sendObjectAsJson(putEndpoint, movie, "PUT");
+    alert("Movie updated");
 }
 
 
