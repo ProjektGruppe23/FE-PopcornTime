@@ -1,4 +1,10 @@
+import {sendObjectAsJson} from "../modules/admin/sendObjectAsJson.js";
+import {fetchAnyUrl} from "../modules/fetchAnyUrl.js";
+
 console.log("I am in updateMovie");
+
+// Base URL for the movie API
+const movieApiBaseUrl = "http://localhost:8080/movie";
 
 // Get buttons and input fields from HTML document and store them in variables
 const btnPostMovie = document.getElementById("btnPostMovie");
@@ -24,30 +30,6 @@ document.getElementById("btnCloseModal").addEventListener('click', () =>
 {
     document.getElementById("editMovieModal").classList.add("hidden");
 });
-
-// Base URL for the movie API
-const movieApiBaseUrl = "http://localhost:8080/movie";
-
-async function fetchAnyUrl(url)
-{
-    try
-    {
-        const response = await fetch(url);
-        if (response.ok)
-        {
-            return await response.json();
-        }
-        else
-        {
-            return `Failed to fetch data: ${response.status} ${response.statusText}`;
-        }
-    }
-    catch (error)
-    {
-        console.error("Fetch Error:", error);
-        throw error;
-    }
-}
 
 async function fetchMovies()
 {
@@ -89,33 +71,6 @@ function populateTable(movies) {
     });
 }
 
-async function sendObjectAsJson(url, object, httpMethod = 'POST')
-{
-    try
-    {
-        const response = await fetch(url, {
-            method: httpMethod,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(object)
-        });
-
-        if (response.ok)
-        {
-            return await handleSuccess(response);
-        }
-        else
-        {
-            return await handleServerError(response);
-        }
-    }
-    catch (error)
-    {
-        handleFetchError(error);
-    }
-}
-
 async function editMovie(movie)
 {
     console.log(movie)
@@ -150,31 +105,4 @@ btnPostMovie.addEventListener('click', () =>
 {
     window.location.href = 'http://localhost:63342/FE-PopcornTime/HTML/createMovie.html';
 });
-
-//---------------------------------------------------------------
-// Helper function to handle HTTP 2xx success codes
-async function handleSuccess(response)
-{
-    return await response.json();
-}
-
-// Helper function to handle HTTP 4xx and 5xx errors
-async function handleServerError(response)
-{
-    const responseData = await response.json();
-    const errorMsg = `Server Error! Status: ${response.status}, Message: ${JSON.stringify(responseData)}`;
-    alert(errorMsg);
-    throw new Error(errorMsg);
-}
-
-// Helper function to handle network errors and other issues
-function handleFetchError(error)
-{
-    console.error('Fetch Error:', error);
-    alert('An unexpected error occurred. See console for details.');
-    throw error;
-}
-
-//---------------------------------------------------------------
-
 
