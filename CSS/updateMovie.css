@@ -1,4 +1,7 @@
+/* ----------------- */
 /* General styles */
+/* ----------------- */
+
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #F0F2F4;
@@ -6,16 +9,20 @@ body {
     padding: 0;
 }
 
+/* ----------------- */
+/* Table styles */
+/* ----------------- */
+
 #tableContainer {
-    overflow: auto;
     max-height: 100vh;
+    overflow: auto;
 }
 
 #movieTable {
-    border-collapse: collapse;
+    width: 100%;
     font-size: 18px;
     text-align: left;
-    width: 100%;
+    border-collapse: collapse;
 }
 
 #movieTable thead tr {
@@ -26,8 +33,8 @@ body {
 
 #movieTable th,
 #movieTable td {
-    border: 1px solid #dddddd;
     padding: 12px 15px;
+    border: 1px solid #dddddd;
 }
 
 #movieTable tr {
@@ -42,7 +49,10 @@ body {
     border-bottom: 2px solid #009879;
 }
 
+/* ----------------- */
 /* Button styles */
+/* ----------------- */
+
 button {
     background-color: #009879;
     color: white;
@@ -57,28 +67,65 @@ button:hover {
     background-color: #007B63;
 }
 
+/* ----------------- */
 /* Input styles */
-input[type=text],
-input[type=number],
-input[type=date] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+/* ----------------- */
+
+/* ----------------- */
+/* Modal styles */
+/* ----------------- */
 
 #editMovieModal {
+
     position: fixed;
     top: 10%;
+    bottom: 10%;
     left: 10%;
-    width: 80%;
-    height: 80%;
-    background-color: rgba(0, 0, 0, 0.8);
+    right: 10%;
+    background-color: #dddddd;
     z-index: 1000;
+    overflow-y: auto; /* Added overflow-y */
 }
+
+#innerModal{
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+    padding: 3%;
+    background-color: #050204;
+}
+
+#innerModal label {
+    width: 95%;
+    padding: 1.5%;
+    margin: 0 0 1% 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+#innerModal input
+{
+    width: 95%;
+    padding: 1.5%;
+    margin-bottom: 3%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#innerModal button {
+    width: 20%;
+    padding: 1.5%;
+    margin: 1.5% auto 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #009879;
+    color: #ffffff;
+}
+
+/* ----------------- */
+/* Hidden element */
+/* ----------------- */
 
 .hidden {
     display: none;

@@ -17,7 +17,12 @@ document.getElementById("btnSaveChanges").addEventListener('click', () =>
             id: document.getElementById("editAgeLimitId").value
         },
         title: document.getElementById("editTitle").value,
-        // Get other fields here
+        description: document.getElementById("editDescription").value,
+        startDate: document.getElementById("editStartDate").value,
+        endDate: document.getElementById("editEndDate").value,
+        picture: document.getElementById("editPicture").value,
+        length: document.getElementById("editLength").value
+
     };
 
     putMovie(updatedMovie);
