@@ -1,3 +1,4 @@
+import {fetchAndPopulateDropdown} from "../modules/populateDropdown.js";
 import {sendObjectAsJson} from "../modules/admin/sendObjectAsJson.js";
 import {fetchAnyUrl} from "../modules/fetchAnyUrl.js";
 
@@ -54,6 +55,7 @@ async function editMovie(movie)
 async function putMovie(movie)
 {
     const putEndpoint = `${movieApiBaseUrl}/${movie.id}`;
+    console.log("Updating Movie Data: ", movie); // Debugging line
     await sendObjectAsJson(putEndpoint, movie, "PUT");
     alert("Movie updated");
 }
@@ -101,6 +103,8 @@ function populateTable(movies) {
 
 document.addEventListener('DOMContentLoaded', async () =>
 {
+    await fetchAndPopulateDropdown('editAgeLimitId', 'http://localhost:8080/ageLimits', 'age', 'id');
+
     const movies = await fetchMovies();
     populateTable(movies);
 });

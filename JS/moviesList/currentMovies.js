@@ -34,7 +34,16 @@ const handleMovieCardClick = (event) =>
     const target = event.target;
     const movieId = target.getAttribute('data-movieId');
     const ageLimit = target.getAttribute('data-ageLimit');
-    console.log(`movieId from clicked element: ${movieId}`);  // Debugging line
+    console.log(`Fetched Movie Data: movieId=${movieId}, ageLimit=${ageLimit}`); // Debugging line
+
+    if (ageLimit)
+    {
+        console.log("Age limit exists:", ageLimit); // Debugging line
+    }
+    else
+    {
+        console.log("Age limit is undefined"); // Debugging line
+    }
 
     if (movieId && (target.tagName === 'BUTTON' || target.tagName === 'IMG'))
     {

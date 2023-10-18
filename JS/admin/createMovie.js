@@ -21,6 +21,7 @@ function getMovie() {
 // Function to post a new movie
 async function postMovie(movie) {
     const postEndpoint = `${movieApiBaseUrl}`;
+    console.log("Sending Movie Data: ", movie); // Debugging line
     await sendObjectAsJson(postEndpoint, movie, "POST");
     alert("Movie saved");
 }
