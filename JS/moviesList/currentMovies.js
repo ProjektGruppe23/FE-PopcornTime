@@ -1,10 +1,9 @@
-import {fetchAndPopulateGenreDropdown} from '../modules/moviesList/fetchAndPopulateGenreDropdown.js';
+import {fetchAndPopulateDropdown} from '../modules/populateDropdown.js';
 import {fetchAndDisplayMoviesByGenre} from '../modules/moviesList/fetchAndDisplayMoviesByGenre.js';
 import {hideLoadingScreen, showLoadingScreen} from '../modules/moviesList/loadingScreen.js';
 
 // right now the problem is that when I update the movie I can get age for agelimit.
 // But not when I create or click on already created fields.
-
 
 
 const apiUrl = "http://localhost:8080/movies/current";
@@ -77,7 +76,7 @@ showLoadingScreen();
 
 document.addEventListener("DOMContentLoaded", async function ()
 {
-   await fetchAndPopulateGenreDropdown();
+    await fetchAndPopulateDropdown('movieFilter', 'http://localhost:8080/genres', 'type', 'id');
 
     dropdownElement.addEventListener('change', async () =>
     {

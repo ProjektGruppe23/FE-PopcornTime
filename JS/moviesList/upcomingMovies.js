@@ -17,17 +17,18 @@ const populateMovieCard = (movie) =>
         <div class="movie-card">
             <img data-movieId="${movie.id}" src="${movie.picture}" alt="${movie.title}">
             <div class="movie-title">${movie.title}</div>
-            <div class="movie-period">Runtime: ${movie.length}</div>
-            <button data-movieId="${movie.id}" data-ageLimit="${movie.ageLimit.name}" id="selectMovie" class="button-style">Select movie <span id="arrow">&#8702</span></button>
+            <div class="movie-period">Runtime: ${movie.length} minutes</div>
+            <button data-movieId="${movie.id}" data-ageLimit="${movie.ageLimit.age}" class="button-style">Select movie</button>
         </div>
     `;
     movieContainer.innerHTML += movieCard;
 };
 
+
 const handleMovieCardClick = (event) =>
 {
     const target = event.target;
-    const movieId = target.getAttribute('data-movieId'); // from the movieCards
+    const movieId = target.getAttribute('data-movieId');
     const ageLimit = target.getAttribute('data-ageLimit');
     console.log(`movieId from clicked element: ${movieId}`);  // Debugging line
 
