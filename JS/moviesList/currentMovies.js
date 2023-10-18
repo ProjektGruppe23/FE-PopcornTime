@@ -1,6 +1,6 @@
-import {fetchAndPopulateGenres} from './modules/populateGenres.js';
-import {fetchAndDisplayMoviesByGenre} from './modules/fetchAndDisplayMoviesByGenre.js';
-import {hideLoadingScreen, showLoadingScreen} from './modules/loadingScreen.js';
+import {fetchAndPopulateGenres} from '../modules/moviesList/populateGenres.js';
+import {fetchAndDisplayMoviesByGenre} from '../modules/moviesList/fetchAndDisplayMoviesByGenre.js';
+import {hideLoadingScreen, showLoadingScreen} from '../modules/moviesList/loadingScreen.js';
 
 const apiUrl = "http://localhost:8080/movies/current";
 const movieContainer = document.getElementById('movie-container');

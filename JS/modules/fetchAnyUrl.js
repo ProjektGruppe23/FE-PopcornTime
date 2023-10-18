@@ -1,6 +1,7 @@
 import { handleResponse } from './handleResponse.js';
 
-export async function fetchAnyUrl(url) {
+export async function fetchAnyUrl(url)
+{
     try {
         const response = await fetch(url);
         return await handleResponse(response);
