@@ -1,4 +1,4 @@
-import {fetchAndPopulateGenres} from '../modules/moviesList/populateGenres.js';
+import {fetchAndPopulateGenreDropdown} from '../modules/moviesList/fetchAndPopulateGenreDropdown.js';
 import {fetchAndDisplayMoviesByGenre} from '../modules/moviesList/fetchAndDisplayMoviesByGenre.js';
 import {hideLoadingScreen, showLoadingScreen} from '../modules/moviesList/loadingScreen.js';
 
@@ -18,7 +18,7 @@ const populateMovieCard = (movie) =>
             <img data-movieId="${movie.id}" src="${movie.picture}" alt="${movie.title}">
             <div class="movie-title">${movie.title}</div>
             <div class="movie-period">Runtime: ${movie.length} minutes</div>
-            <button data-movieId="${movie.id}" data-ageLimit="${movie.ageLimit}" id="selectMovie" class="button-style">Select movie</button>
+            <button data-movieId="${movie.id}" data-ageLimit="${movie.ageLimit}" class="button-style">Select movie</button>
         </div>
     `;
     movieContainer.innerHTML += movieCard;
@@ -72,7 +72,7 @@ showLoadingScreen();
 
 document.addEventListener("DOMContentLoaded", async function ()
 {
-    fetchAndPopulateGenres();
+   await fetchAndPopulateGenreDropdown();
 
     dropdownElement.addEventListener('change', async () =>
     {
