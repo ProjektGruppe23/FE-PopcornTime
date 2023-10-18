@@ -3,11 +3,11 @@ import {fetchAnyUrl} from "../modules/fetchAnyUrl.js";
 
 console.log("I am in updateMovie");
 
-// Base URL for the movie API
-const movieApiBaseUrl = "http://localhost:8080/movie";
-
 // Get buttons and input fields from HTML document and store them in variables
 const btnPostMovie = document.getElementById("btnPostMovie");
+
+// Base URL for the movie API
+const movieApiBaseUrl = "http://localhost:8080/movie";
 
 document.getElementById("btnSaveChanges").addEventListener('click', () =>
 {
@@ -35,6 +35,28 @@ document.getElementById("btnCloseModal").addEventListener('click', () =>
 {
     document.getElementById("editMovieModal").classList.add("hidden");
 });
+
+async function editMovie(movie)
+{
+    console.log(movie)
+    document.getElementById("editId").value = movie.id;
+    document.getElementById("editAgeLimitId").value = movie.ageLimit.id;
+    document.getElementById("editTitle").value = movie.title;
+    document.getElementById("editDescription").value = movie.description;
+    document.getElementById("editStartDate").value = movie.startDate;
+    document.getElementById("editEndDate").value = movie.endDate;
+    document.getElementById("editPicture").value = movie.picture;
+    document.getElementById("editLength").value = movie.length;
+
+    document.getElementById("editMovieModal").classList.remove("hidden");
+}
+
+async function putMovie(movie)
+{
+    const putEndpoint = `${movieApiBaseUrl}/${movie.id}`;
+    await sendObjectAsJson(putEndpoint, movie, "PUT");
+    alert("Movie updated");
+}
 
 async function fetchMovies()
 {
@@ -74,28 +96,6 @@ function populateTable(movies) {
 
         actionCell.appendChild(editButton);
     });
-}
-
-async function editMovie(movie)
-{
-    console.log(movie)
-    document.getElementById("editId").value = movie.id;
-    document.getElementById("editAgeLimitId").value = movie.ageLimit.id;
-    document.getElementById("editTitle").value = movie.title;
-    document.getElementById("editDescription").value = movie.description;
-    document.getElementById("editStartDate").value = movie.startDate;
-    document.getElementById("editEndDate").value = movie.endDate;
-    document.getElementById("editPicture").value = movie.picture;
-    document.getElementById("editLength").value = movie.length;
-
-    document.getElementById("editMovieModal").classList.remove("hidden");
-}
-
-async function putMovie(movie)
-{
-    const putEndpoint = `${movieApiBaseUrl}/${movie.id}`;
-    await sendObjectAsJson(putEndpoint, movie, "PUT");
-    alert("Movie updated");
 }
 
 
