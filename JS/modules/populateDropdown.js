@@ -20,6 +20,7 @@ export async function fetchAndPopulateDropdown(dropdownId, fetchUrl, textKey, va
         // Populate the dropdown
         data.forEach(item => {
             dropdownElement.appendChild(createOption(item[textKey], item[valueKey]));
+            // textKey will populate the text of the dropdown, valueKey will populate the value of the dropdown to the database.
         });
     } catch (error) {
         console.error(`Error populating dropdown for ${dropdownId}:`, error);

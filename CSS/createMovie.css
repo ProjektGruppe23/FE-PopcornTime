@@ -1,0 +1,30 @@
+.form-container {
+    position: relative;
+    margin: 5%;
+    padding: 3%;
+    background-color: #dddddd;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label,
+.form-group input {
+    width: 95%;
+    padding: 1.5%;
+    margin-bottom: 1%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group button {
+    width: 20%;
+    padding: 1.5%;
+    margin: 1.5% auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #009879;
+    color: white;
+}

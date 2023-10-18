@@ -1,4 +1,5 @@
 import {sendObjectAsJson} from "../modules/admin/sendObjectAsJson.js";
+import {fetchAndPopulateDropdown} from '../modules/populateDropdown.js';
 
 const movieApiBaseUrl = "http://localhost:8080/movie";
 
@@ -32,4 +33,8 @@ document.getElementById("btnPostMovie").addEventListener('click', async () => {
     } catch (error) {
         alert("Error posting movie: " + error);
     }
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchAndPopulateDropdown('inpAgeLimitId', 'http://localhost:8080/ageLimits', 'age', 'id');
 });

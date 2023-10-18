@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../CSS/createMovie.css">
 </head>
 <body>
 
@@ -10,30 +11,28 @@
 <div class="form-container">
     <form class="form-group">
 
-        <label class="form-lab">Age Limit:</label>
-        <input id="inpAgeLimitId" max="2" min="1" type="number"><br>
+        <label class="form-lab" for="inpAgeLimitId">Age Limit:</label>
+        <select id="inpAgeLimitId"></select><br>
 
-        <label class="form-lab">Movie Title:</label>
+        <label class="form-lab" for="inpTitle">Movie Title:</label>
         <input id="inpTitle" type="text"><br>
 
-        <label class="form-lab">Description:</label>
+        <label class="form-lab" for="inpDescription">Description:</label>
         <input id="inpDescription" type="text"><br>
 
-        <Label class="form-lab">Picture URL:</Label>
+        <Label class="form-lab" for="inpPicture">Picture URL:</Label>
         <input id="inpPicture" type="text"><br>
 
-        <label class="form-lab">Start Date:</label>
+        <label class="form-lab" for="inpStartDate">Start Date:</label>
         <input id="inpStartDate" type="date"><br>
 
-        <label class="form-lab">End Date:</label>
+        <label class="form-lab" for="inpEndDate">End Date:</label>
         <input id="inpEndDate" type="date"><br>
 
-        <label class="form-lab">Length:</label>
+        <label class="form-lab" for="inpLength">Length:</label>
         <input id="inpLength" type="number"><br>
 
         <button id="btnPostMovie" type="button">Create New Movie</button>
-        <button id="btnPutMovie" type="button">Update Movie</button>
-        <button id="btnDeleteMovie" type="button">Delete Movie</button>
     </form>
 </div>
 
