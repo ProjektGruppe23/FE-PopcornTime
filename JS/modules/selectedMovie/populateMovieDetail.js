@@ -1,4 +1,4 @@
-import {fetchAnyUrl} from "./fetchAnyUrl.js";
+import {fetchAnyUrl} from "../fetchAnyUrl.js";
 
 // Function to populate movie details into HTML
 export async function populateMovieDetails(movieId)
