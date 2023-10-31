@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../CSS/updateMovie.css">
+    <link href="../CSS/updateMovie.css" rel="stylesheet">
 </head>
 <body>
 
-<button id="btnPostMovie" onclick="window.location.href='http://localhost:63342/FE-PopcornTime/HTML/createMovie.html'">Post Movie</button>
+<button id="btnPostMovie" onclick="window.location.href='http://localhost:63342/FE-PopcornTime/HTML/createMovie.html'">
+    Post Movie
+</button>
 
 <div id="movieContainer"></div>
 <table id="movieTable">
@@ -15,15 +17,15 @@
 </table>
 
 <!-- Edit Movie Modal -->
-<div id="editMovieModal" class="hidden">
-    <input id="editId" type="number" placeholder="ID" readonly/>
-    <input id="editAgeLimitId" type="number" placeholder="Age Limit ID"/>
-    <input id="editTitle" type="text" placeholder="Title"/>
-    <input id="editDescription" type="text" placeholder="Description"/>
-    <input id="editStartDate" type="Date" placeholder="Start Date"/>
-    <input id="editEndDate" type="Date" placeholder="End Date"/>
-    <input id="editPicture" type="text" placeholder="Picture URL"/>
-    <input id="editLength" type="number" placeholder="Title"/>
+<div class="hidden" id="editMovieModal">
+    <input id="editId" placeholder="ID" readonly type="number"/>
+    <input id="editAgeLimitId" placeholder="Age Limit ID" type="number"/>
+    <input id="editTitle" placeholder="Title" type="text"/>
+    <input id="editDescription" placeholder="Description" type="text"/>
+    <input id="editStartDate" placeholder="Start Date" type="Date"/>
+    <input id="editEndDate" placeholder="End Date" type="Date"/>
+    <input id="editPicture" placeholder="Picture URL" type="text"/>
+    <input id="editLength" placeholder="Title" type="number"/>
 
     <button id="btnSaveChanges">Save Changes</button>
     <button id="btnCloseModal">Close</button>

@@ -1,5 +1,5 @@
 // Lav click funktion
-export const handleClickEvent= (event) =>
+export const handleClickEvent = (event) =>
 {
     const target = event.target;
     const showtime_Id = target.getAttribute('data-showtimeId');

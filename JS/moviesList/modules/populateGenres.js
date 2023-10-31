@@ -58,6 +58,4 @@ export async function fetchAndPopulateGenres()
     {
         console.error("Error populating genres:", error);
     }
-
-
 }

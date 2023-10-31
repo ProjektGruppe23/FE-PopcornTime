@@ -11,47 +11,40 @@ body {
     position: sticky;
 }
 
-#navbar-template ul
-{
+#navbar-template ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-#navbar-template li
-{
+#navbar-template li {
     display: inline;
     margin-right: 20px;
     margin-left: 20px;
 }
 
-#navbar-template a:hover
-{
+#navbar-template a:hover {
     color: #5b5b5b;
 }
 
-#navbar-template a
-{
+#navbar-template a {
     text-decoration: none;
     color: #9f9e9e;
     font-weight: bold;
     font-family: Bahnschrift, sans-serif;
 }
 
-#searchbar-div
-{
+#searchbar-div {
     float: right;
     padding-right: 90px;
     margin: -4px 0px;
 }
 
-#searchbar-input:focus
-{
+#searchbar-input:focus {
     outline: none;
 }
 
-#searchbar-input
-{
+#searchbar-input {
     background-color: #1e2738;
     color: #9f9e9e;
     border-radius: 10px 10px 10px 10px;
@@ -62,8 +55,7 @@ body {
     padding-left: 10px;
 }
 
-.search-options
-{
+.search-options {
     height: auto;
     width: auto;
     background-color: #1e2738;
@@ -72,28 +64,24 @@ body {
     overflow: hidden;
 }
 
-.search-options a:hover
-{
+.search-options a:hover {
     color: #ff9900;
 }
 
-.search-options a
-{
+.search-options a {
     display: flex;
     width: auto;
     height: auto;
     color: #bcceef;
 }
 
-.search-options img
-{
+.search-options img {
     display: block;
     width: 80px;
     height: 76px;
 }
 
-.search-options div
-{
+.search-options div {
     height: 76px;
     width: 178px;
     display: flex;

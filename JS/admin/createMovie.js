@@ -37,8 +37,10 @@ function getMovie()
 }
 
 // Generic function to send object as JSON
-async function sendObjectAsJson(url, object, httpMethod = 'POST') {
-    try {
+async function sendObjectAsJson(url, object, httpMethod = 'POST')
+{
+    try
+    {
         const response = await fetch(url, {
             method: httpMethod,
             headers: {
@@ -47,24 +49,31 @@ async function sendObjectAsJson(url, object, httpMethod = 'POST') {
             body: JSON.stringify(object)
         });
 
-        if (response.ok) {
+        if (response.ok)
+        {
             return await handleSuccess(response);
-        } else {
+        }
+        else
+        {
             return await handleServerError(response);
         }
-    } catch (error) {
+    }
+    catch (error)
+    {
         handleFetchError(error);
     }
 }
 
 //---------------------------------------------------------------
 // Helper function to handle HTTP 2xx success codes
-async function handleSuccess(response) {
+async function handleSuccess(response)
+{
     return await response.json();
 }
 
 // Helper function to handle HTTP 4xx and 5xx errors
-async function handleServerError(response) {
+async function handleServerError(response)
+{
     const responseData = await response.json();
     const errorMsg = `Server Error! Status: ${response.status}, Message: ${JSON.stringify(responseData)}`;
     alert(errorMsg);
@@ -72,11 +81,13 @@ async function handleServerError(response) {
 }
 
 // Helper function to handle network errors and other issues
-function handleFetchError(error) {
+function handleFetchError(error)
+{
     console.error('Fetch Error:', error);
     alert('An unexpected error occurred. See console for details.');
     throw error;
 }
+
 //---------------------------------------------------------------
 
 // POST movie to server

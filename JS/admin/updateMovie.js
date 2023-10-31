@@ -63,9 +63,11 @@ async function fetchMovies()
     }
 }
 
-function populateTable(movies) {
+function populateTable(movies)
+{
     const table = document.getElementById('movieTable');
-    movies.forEach((movie) => {
+    movies.forEach((movie) =>
+    {
         const row = table.insertRow();
 
         const titleCell = row.insertCell();
