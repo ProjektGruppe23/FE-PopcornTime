@@ -1,6 +1,6 @@
-import {fetchAndPopulateGenreDropdown} from '../modules/moviesList/fetchAndPopulateGenreDropdown.js';
-import {fetchAndDisplayMoviesByGenre} from '../modules/moviesList/fetchAndDisplayMoviesByGenre.js';
-import {hideLoadingScreen, showLoadingScreen} from '../modules/moviesList/loadingScreen.js';
+import {fetchAndPopulateGenreDropdown} from './modules/moviesList/fetchAndPopulateGenreDropdown.js';
+import {fetchAndDisplayMoviesByGenre} from './modules/moviesList/fetchAndDisplayMoviesByGenre.js';
+import {hideLoadingScreen, showLoadingScreen} from './modules/moviesList/loadingScreen.js';
 
 const apiUrl = "http://localhost:8080/movies/upcoming";
 const movieContainer = document.getElementById('movie-container');

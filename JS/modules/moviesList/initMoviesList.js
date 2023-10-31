@@ -1,6 +1,6 @@
-import {fetchAndPopulateGenreDropdown} from '../modules/moviesList/fetchAndPopulateGenreDropdown.js';
-import {fetchAndDisplayMoviesByGenre} from '../modules/moviesList/fetchAndDisplayMoviesByGenre.js';
-import {hideLoadingScreen, showLoadingScreen} from '../modules/moviesList/loadingScreen.js';
+import {fetchAndPopulateGenreDropdown} from './fetchAndPopulateGenreDropdown.js';
+import {fetchAndDisplayMoviesByGenre} from './fetchAndDisplayMoviesByGenre.js';
+import {hideLoadingScreen, showLoadingScreen} from './loadingScreen.js';
 
 const initMoviesPage = async (apiUrl) => {
     const movieContainer = document.getElementById('movie-container');

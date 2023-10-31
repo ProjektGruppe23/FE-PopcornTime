@@ -1,5 +1,5 @@
-import {populateMovieDetails} from "../modules/selectedMovie/populateMovieDetail.js";
-import {handleClickEvent} from "../modules/selectedMovie/handleClickEvent.js";
+import {populateMovieDetails} from "./modules/selectedMovie/populateMovieDetail.js";
+import {handleClickEvent} from "./modules/selectedMovie/handleClickEvent.js";
 
 const showtimes = document.getElementById('showtimes');
 
