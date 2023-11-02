@@ -8,7 +8,7 @@ console.log("I am in updateMovie");
 const btnPostMovie = document.getElementById("btnPostMovie");
 
 // Base URL for the movie API
-const movieApiBaseUrl = "http://localhost:8080/movie";
+const movieApiBaseUrl = "http://localhost:8080/putMovie";
 
 document.getElementById("btnSaveChanges").addEventListener('click', () =>
 {
@@ -64,8 +64,7 @@ async function fetchMovies()
 {
     try
     {
-        const movies = await fetchAnyUrl("http://localhost:8080/movies");
-        return movies;
+        return await fetchAnyUrl("http://localhost:8080/movies");
     }
     catch (error)
     {

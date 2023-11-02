@@ -1,7 +1,7 @@
 import {sendObjectAsJson} from "../modules/admin/sendObjectAsJson.js";
 import {fetchAndPopulateDropdown} from '../modules/populateDropdown.js';
 
-const movieApiBaseUrl = "http://localhost:8080/movie";
+const movieApiBaseUrl = "http://localhost:8080/createMovie";
 
 // Function to gather movie data from the form
 function getMovie() {
