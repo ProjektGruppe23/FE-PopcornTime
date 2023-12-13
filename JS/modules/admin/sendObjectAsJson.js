@@ -1,11 +1,12 @@
 import { handleResponse } from '../handleResponse.js';
 
-export async function sendObjectAsJson(url, object, httpMethod = 'POST')
+export async function sendObjectAsJson(url, object, httpMethod)
 {
     try
     {
         // Initialize fetch request
-        const response = await fetch(url, {
+        const response = await fetch(url,
+            {
             method: httpMethod,
             headers: {
                 'Content-Type': 'application/json'
